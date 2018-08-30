@@ -64,7 +64,7 @@ rbac:
 
 
 proxy:
-  secretToken: ''
+  secretToken: '43e08ee26c154c6341ebdc854ce2da8164f96982dc780d753e9246b4d5326da7'
   service:
     type: NodePort
     labels: {}
