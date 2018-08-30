@@ -33,7 +33,8 @@ hub:
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path: /hub/metrics
-  extraConfig: {}
+  extraConfig: |
+    c.JupyterHub.authenticator_class = 'ldapauthenticator.LDAPAuthenticator'
   extraConfigMap: {}
   extraEnv: {}
   extraContainers: []
@@ -120,12 +121,12 @@ proxy:
               cidr: 0.0.0.0/0
 
 auth:
-  type: "custom"
+  type: custom
   custom:
     className: "ldapauthenticator.LDAPAuthenticator"
     config:
       bind_dn_template: "cn={username},ou=Everyone,dc=zonetrading,dc=com"
-      server_address: "zonedc01.zonetrading.com"
+      server_address: zonedc01.zonetrading.com
       use_ssl: false
   whitelist:
     users:
