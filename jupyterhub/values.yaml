@@ -136,8 +136,8 @@ auth:
       user: {}
     user: {}
   state:
-    enabled: false
-    cryptoKey:
+    enabled: true
+    cryptoKey: 79c67bc7e5b2da5b3c55c162e5067a795aef4d98540950c9dbb15d7cfc2501f2
 
 singleuser:
   networkTools:
