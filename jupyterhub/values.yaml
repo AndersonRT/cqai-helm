@@ -122,21 +122,10 @@ auth:
   type: ldap
   ldap:
     server:
-      address: zonedc01.zonetrading.com
+      address: ldap.EXAMPLE.org
     dn:
-      lookup: true
-      search:
-        filter: '({login_attr}={login})'
-        user: 'ldap_search_user_technical_account'
-        password: 'secret'
-        dnAttribute: 'cn'
       templates:
-        - 'uid={username},ou=Everyone,dc=zonetrading,dc=com'
-      user:
-        searchBase: 'ou=Everyone,dc=zonetrading,dc=com'
-        escape: False
-        attribute: 'sAMAccountName'
-    allowedGroups:
+        - 'cn={username},ou=edir,ou=people,ou=EXAMPLE-UNIT,o=EXAMPLE'
   state:
     enabled: true
     cryptoKey: 80a6b8eab6aba0add98b5971ec218532c67542e82b8340867d211327f2b84465
