@@ -121,14 +121,16 @@ proxy:
 
 
 auth:
-  type: dummy
+  type: gitlab
   whitelist:
     users:
   admin:
     access: true
     users:
-  dummy:
-    password:
+  gitlab:
+    callbackUrl: "http://krcqai01:8888/auth/gitlab/callback"
+    clientId: 
+    clientSecret:
   ldap:
     dn:
       search: {}
