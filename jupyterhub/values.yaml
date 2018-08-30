@@ -70,8 +70,8 @@ proxy:
     labels: {}
     annotations: {}
     nodePorts:
-      http: 8888
-      https: 8899
+      http: 
+      https: 
   chp:
     image:
       name: jupyterhub/configurable-http-proxy
