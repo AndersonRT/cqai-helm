@@ -120,17 +120,16 @@ proxy:
               cidr: 0.0.0.0/0
 
 
+
 auth:
-  type: gitlab
+  type: dummy
   whitelist:
-    users:
+    users: {'user1'}
   admin:
     access: true
-    users:
-  gitlab:
-    callbackUrl: "http://krcqai01:8888/auth/gitlab/callback"
-    clientId: 
-    clientSecret:
+    users: {'admin', 'admin2'}
+  dummy:
+    password: "password"
   ldap:
     dn:
       search: {}
