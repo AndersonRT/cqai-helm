@@ -124,10 +124,14 @@ proxy:
 auth:
   type: dummy
   whitelist:
-    users: {'user1'}
+    users: 
+      - 'user'
+      - 'user1'
+      - 'user2'
   admin:
     access: true
-    users: {'admin', 'admin2'}
+    users: 
+      - 'admin'
   dummy:
     password: "password"
   ldap:
