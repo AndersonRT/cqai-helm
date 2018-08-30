@@ -120,21 +120,18 @@ proxy:
               cidr: 0.0.0.0/0
 
 auth:
-  type: ldap
+  type: "custom"
+  custom:
+    className: "ldapauthenticator.LDAPAuthenticator"
+    config:
+      bind_dn_template: "cn={username},ou=Everyone,dc=zonetrading,dc=com"
+      server_address: "zonedc01.zonetrading.com"
+      use_ssl: false
   whitelist:
     users:
   admin:
     access: true
     users:
-  ldap:
-    server:
-      address: zonedc01.zonetrading.com
-    dn:
-      templates:
-        - 'cn={username},ou=Everyone,dc=zonetrading,dc=com'
-      search: {}
-      user: {}
-    user: {}
   state:
     enabled: true
     cryptoKey: 79c67bc7e5b2da5b3c55c162e5067a795aef4d98540950c9dbb15d7cfc2501f2
