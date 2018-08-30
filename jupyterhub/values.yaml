@@ -134,9 +134,6 @@ auth:
     dn:
       templates:
         - 'cn={username},ou=Everyone,dc=zonetrading,dc=com'
-  state:
-    enabled: false
-    cryptoKey:
 
 
 singleuser:
