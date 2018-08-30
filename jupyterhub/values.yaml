@@ -131,9 +131,9 @@ auth:
         password: 'secret'
         dnAttribute: 'cn'
       templates:
-        - 'uid={username},ou=Everyone,dc=zonetrading,dc=com’
+        - 'uid={username},ou=Everyone,dc=zonetrading,dc=com'
       user:
-        searchBase: 'ou=Everyone,dc=zonetrading,dc=com’
+        searchBase: 'ou=Everyone,dc=zonetrading,dc=com'
         escape: False
         attribute: 'sAMAccountName'
     allowedGroups:
