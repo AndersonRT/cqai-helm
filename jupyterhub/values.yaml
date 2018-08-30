@@ -182,13 +182,13 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: jupyterhub/k8s-singleuser-sample
-    tag: 'd12eb39'
+    name: rtanderson/cqai-basic
+    tag: latest
     pullPolicy: IfNotPresent
   imagePullSecret:
-    enabled: false
-    registry:
-    username:
+    enabled: true
+    registry: https://index.docker.io/v1/
+    username: rtanderson
     email:
     password:
   startTimeout: 300
