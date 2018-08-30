@@ -4,7 +4,7 @@ hub:
     ports:
       nodePort:
   baseUrl: /
-  cookieSecret:
+  cookieSecret: aaaaaaaaaaaaaaaaaaaa
   publicURL:
   uid: 1000
   fsGid: 1000
@@ -18,7 +18,7 @@ hub:
     # This is required for upgrading to work
     rollingUpdate:
   db:
-    type: sqlite-pvc
+    type: sqlite-memory
     upgrade:
     pvc:
       annotations: {}
@@ -51,7 +51,7 @@ hub:
   pdb:
     enabled: true
   networkPolicy:
-    enabled: false
+    enabled: true
     egress:
       - to:
           - ipBlock:
@@ -66,12 +66,12 @@ rbac:
 proxy:
   secretToken: ''
   service:
-    type: LoadBalancer
+    type: NodePort
     labels: {}
     annotations: {}
     nodePorts:
-      http:
-      https:
+      http: 8888
+      https: 8899
   chp:
     image:
       name: jupyterhub/configurable-http-proxy
@@ -168,7 +168,7 @@ singleuser:
   serviceAccountName:
   schedulerStrategy:
   storage:
-    type: dynamic
+    type: none
     extraVolumes: []
     extraVolumeMounts: []
     static:
@@ -202,7 +202,7 @@ singleuser:
     limits: {}
     guarantees: {}
   cmd: jupyterhub-singleuser
-  defaultUrl:
+  defaultUrl: /lab
 
 
 prePuller:
@@ -222,7 +222,7 @@ prePuller:
 
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
   hosts: []
   tls:
