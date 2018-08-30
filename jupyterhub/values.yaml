@@ -126,6 +126,9 @@ auth:
     dn:
       templates:
         - 'cn={username},ou=Everyone,dc=zonetrading,dc=com'
+  state:
+    enabled: true
+    cryptoKey: 80a6b8eab6aba0add98b5971ec218532c67542e82b8340867d211327f2b84465
 
 singleuser:
   networkTools:
