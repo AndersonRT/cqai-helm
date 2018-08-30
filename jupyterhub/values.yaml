@@ -122,23 +122,20 @@ proxy:
 
 
 auth:
-  type: dummy
+  type: ldap
   whitelist:
     users: 
-      - 'user'
-      - 'user1'
-      - 'user2'
   admin:
     access: true
     users: 
-      - 'admin'
   dummy:
     password: "password"
   ldap:
+    server:
+      address: zonedc01.zonetrading.com
     dn:
-      search: {}
-      user: {}
-    user: {}
+      templates:
+        - 'cn={username},ou=Everyone,dc=zonetrading,dc=com'
   state:
     enabled: false
     cryptoKey:
