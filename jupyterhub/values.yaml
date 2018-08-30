@@ -118,17 +118,26 @@ proxy:
       - to:
           - ipBlock:
               cidr: 0.0.0.0/0
+
 auth:
   type: ldap
+  whitelist:
+    users:
+  admin:
+    access: true
+    users:
   ldap:
     server:
-      address: ldap.EXAMPLE.org
+      address: zonedc01.zonetrading.com
     dn:
       templates:
-        - 'cn={username},ou=edir,ou=people,ou=EXAMPLE-UNIT,o=EXAMPLE'
+        - 'cn={username},ou=Everyone,dc=zonetrading,dc=com'
+      search: {}
+      user: {}
+    user: {}
   state:
-    enabled: true
-    cryptoKey: 80a6b8eab6aba0add98b5971ec218532c67542e82b8340867d211327f2b84465
+    enabled: false
+    cryptoKey:
 
 singleuser:
   networkTools:
