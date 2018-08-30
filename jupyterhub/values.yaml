@@ -186,9 +186,9 @@ singleuser:
     tag: latest
     pullPolicy: IfNotPresent
   imagePullSecret:
-    enabled: true
-    registry: https://index.docker.io/v1/
-    username: rtanderson
+    enabled: false
+    registry: 
+    username: 
     email:
     password:
   startTimeout: 300
@@ -222,7 +222,7 @@ prePuller:
 
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
   hosts: []
   tls:
