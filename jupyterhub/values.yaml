@@ -128,8 +128,6 @@ auth:
   admin:
     access: true
     users: 
-  dummy:
-    password: "password"
   ldap:
     server:
       address: zonedc01.zonetrading.com
