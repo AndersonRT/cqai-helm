@@ -33,8 +33,7 @@ hub:
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path: /hub/metrics
-  extraConfig: |
-    c.JupyterHub.authenticator_class = 'ldapauthenticator.LDAPAuthenticator'
+  extraConfig: {}
   extraConfigMap: {}
   extraEnv: {}
   extraContainers: []
