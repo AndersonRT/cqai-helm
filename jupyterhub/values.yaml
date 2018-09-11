@@ -126,6 +126,11 @@ proxy:
 
 auth:
   type: custom
+  whitelist:
+    users:
+  admin:
+    access: true
+    users:
   custom:
     clasName: 'hashauthenticator.HashAuthenticator'
     config:
