@@ -33,7 +33,11 @@ hub:
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path: /hub/metrics
-  extraConfig: {}
+  extraConfig: |
+    c.JupyterHub.authenticator_class = 'hashauthenticator.HashAuthenticator'
+    c.HashAuthenticator.secret_key = 'test'  # Defaults to ''
+    c.HashAuthenticator.password_length = 6          # Defaults to 6
+    c.HashAuthenticator.show_logins = True            # Optional, defaults to False
   extraConfigMap: {}
   extraEnv: {}
   extraContainers: []
@@ -127,12 +131,13 @@ auth:
   admin:
     access: true
     users:
-  custom:
-    className: 'hashauthenticator.HashAuthenticator'
-    params:
-      secret_key: "0fafb0682a493485ed4e764d92abab1199d73246477c5daac7e0371ba541dd66"
-      show_logins: true
-      password_length: 3
+    - admin
+  #custom:
+  #  className: 'hashauthenticator.HashAuthenticator'
+  #  params:
+  #    secret_key: "0fafb0682a493485ed4e764d92abab1199d73246477c5daac7e0371ba541dd66"
+  #    show_logins: true
+  #    password_length: 3
   state:
     enabled: false
     cryptoKey:
