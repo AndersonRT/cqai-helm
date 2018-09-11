@@ -33,7 +33,11 @@ hub:
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path: /hub/metrics
-  extraConfig: {}
+  extraConfig: |
+    c.JupyterHub.authenticator_class = 'hashauthenticator.HashAuthenticator'
+    c.HashAuthenticator.secret_key = 'my secret key'  # Defaults to ''
+    c.HashAuthenticator.password_length = 10          # Defaults to 6
+    c.HashAuthenticator.show_logins = True            # Optional, defaults to False
   extraConfigMap: {}
   extraEnv: {}
   extraContainers: []
