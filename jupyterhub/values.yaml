@@ -118,23 +118,38 @@ proxy:
       - to:
           - ipBlock:
               cidr: 0.0.0.0/0
+
+
 auth:
-  type: dummy
-  whitelist:
-    users:
-  admin:
-    access: true
-    users:
-  dummy:
-    password:
-  ldap:
-    dn:
-      search: {}
-      user: {}
-    user: {}
+  type: custom
+  custom:
+    clasName: 'hashauthenticator.HashAuthenticator'
+    config:
+      secret_key: "0fafb0682a493485ed4e764d92abab1199d73246477c5daac7e0371ba541dd66"
+      show_logins: true
+      password_length: 3
   state:
     enabled: false
     cryptoKey:
+
+
+#auth:
+#  type: dummy
+#  whitelist:
+#    users:
+#  admin:
+#    access: true
+#    users:
+#  dummy:
+#    password:
+#  ldap:
+#    dn:
+#      search: {}
+#      user: {}
+#    user: {}
+#  state:
+#    enabled: false
+#    cryptoKey:
 
 singleuser:
   networkTools:
