@@ -41,8 +41,8 @@ hub:
   extraVolumes: []
   extraVolumeMounts: []
   image:
-    name: jupyterhub/k8s-hub
-    tag: 'a70c431'
+    name: infra.cqai.ktginnovation.com/k8s-hub
+    tag: 'latest'
   resources:
     requests:
       cpu: 200m
