@@ -33,16 +33,14 @@ hub:
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path: /hub/metrics
-  extraConfig: |
-    pip3 --no-cache-dir install git+https://github.com/pminkov/jupyterhub-hashauthenticator
-    c.JupyterHub.authenticator_class = 'hashauthenticator.HashAuthenticator'
+  extraConfig: {}
   extraConfigMap: {}
   extraEnv: {}
   extraContainers: []
   extraVolumes: []
   extraVolumeMounts: []
   image:
-    name: infra.cqai.ktginnovation.com/k8s-hub
+    name: infra.cqai.ktginnovation.com/jhub
     tag: 'latest'
   resources:
     requests:
