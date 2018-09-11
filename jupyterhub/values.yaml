@@ -128,7 +128,7 @@ auth:
     access: true
     users:
   custom:
-    clasName: 'hashauthenticator.HashAuthenticator'
+    className: 'hashauthenticator.HashAuthenticator'
     params:
       secret_key: "0fafb0682a493485ed4e764d92abab1199d73246477c5daac7e0371ba541dd66"
       show_logins: true
