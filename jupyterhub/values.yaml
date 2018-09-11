@@ -200,8 +200,8 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: jupyterhub/k8s-singleuser-sample
-    tag: 0.7.0
+    name: infra.cqai.ktginnovation.com/cqai-notebook-basic
+    tag: latest
     pullPolicy: IfNotPresent
   imagePullSecret:
     enabled: false
