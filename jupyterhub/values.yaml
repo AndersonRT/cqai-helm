@@ -182,7 +182,7 @@ singleuser:
     postStart:
       exec:
         command: ["mkdir", "-p", "market-data"]
-        command: ["s3fs", "cloudquant:/mktdb5", "/home/jovyan/market-data", "-o", "allow_other", "endpoint=us-east-2", "passwd_file=/base/.general-passwd-s3fs", "-o", "umask=222"]
+        command: ["s3fs", "cloudquant:/mktdb5", "/home/jovyan/market-data", "-o", "allow_other", "-o", "endpoint=us-east-2", "-o", "passwd_file=/base/.general-passwd-s3fs", "-o", "umask=222"]
   initContainers:
   nodeSelector: {}
   uid: 1000
