@@ -182,6 +182,7 @@ singleuser:
     postStart:
       exec:
         command: ["mkdir", "-p", "market-data"]
+        command: ["cp", "/base/.condarc",".condarc"]
   initContainers:
   nodeSelector: {}
   uid: 1000
