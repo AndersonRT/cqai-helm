@@ -38,6 +38,19 @@ hub:
     c.HashAuthenticator.secret_key = 'test'  # Defaults to ''
     c.HashAuthenticator.password_length = 6          # Defaults to 6
     c.HashAuthenticator.show_logins = True            # Optional, defaults to False
+    
+    from kubernetes import client
+    def modify_pod_hook(spawner, pod):
+        pod.spec.containers[0].security_context = client.V1SecurityContext(
+            privileged=True,
+            capabilities=client.V1Capabilities(
+                add=['SYS_ADMIN']
+            )
+        )
+        return pod
+    c.KubeSpawner.modify_pod_hook = modify_pod_hook
+    
+    
   extraConfigMap: {}
   extraEnv: {}
   extraContainers: []
@@ -191,8 +204,13 @@ singleuser:
   schedulerStrategy:
   storage:
     type: dynamic
-    extraVolumes: []
-    extraVolumeMounts: []
+    extraVolumes:
+      - name: fuse
+        hostPath:
+          - path: /dev/fuse
+    extraVolumeMounts:
+      - name: fuse
+        mountPath: /dev/fuse
     static:
       pvcName:
       subPath: '{username}'
