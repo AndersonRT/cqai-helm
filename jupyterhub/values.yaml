@@ -179,6 +179,9 @@ singleuser:
   extraLabels: {}
   extraEnv: {}
   lifecycleHooks:
+    postStart:
+      exec:
+        command: ["mkdir", "-p", "test123"]
   initContainers:
   nodeSelector: {}
   uid: 1000
