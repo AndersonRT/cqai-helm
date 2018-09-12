@@ -207,7 +207,7 @@ singleuser:
     extraVolumes:
       - name: fuse
         hostPath:
-          - path: /dev/fuse
+          path: /dev/fuse
     extraVolumeMounts:
       - name: fuse
         mountPath: /dev/fuse
