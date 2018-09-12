@@ -181,8 +181,8 @@ singleuser:
   lifecycleHooks:
     postStart:
       exec:
-        command: ["mkdir", "-p", "test123"]
-        command: ["mkdir", "-p", "test456"]
+        command: ["mkdir", "-p", "market-data"]
+        command: ["s3fs", "cloudquant:/mktdb5", "market-data", "-o", "allow_other", "endpoint=us-east-2", "passwd_file=/base/.general-passwd-s3fs", "-o", "umask=222"]
   initContainers:
   nodeSelector: {}
   uid: 1000
