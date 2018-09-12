@@ -182,6 +182,7 @@ singleuser:
     postStart:
       exec:
         command: ["mkdir", "-p", "test123"]
+        command: ["mkdir", "-p", "test456"]
   initContainers:
   nodeSelector: {}
   uid: 1000
