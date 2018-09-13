@@ -34,6 +34,7 @@ hub:
     prometheus.io/scrape: 'true'
     prometheus.io/path: /hub/metrics
   extraConfig: |
+    c.Spawner.cmd = ['jupyter-labhub']
     c.JupyterHub.authenticator_class = 'hashauthenticator.HashAuthenticator'
     c.HashAuthenticator.secret_key = 'test'  # Defaults to ''
     c.HashAuthenticator.password_length = 6          # Defaults to 6
