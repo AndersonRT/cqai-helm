@@ -195,7 +195,11 @@ singleuser:
   lifecycleHooks:
     postStart:
       exec:
-        command: ["mkdir", "-p", "market-data", "shared-scripts","tutorials","alternative-datasets","user-data"]
+        command: ["mkdir", "-p", "market-data"]
+        command: ["mkdir", "-p", "shared-scripts"]
+        command: ["mkdir", "-p","tutorials"]
+        command: ["mkdir", "-p","alternative-datasets"]
+        command: ["mkdir", "-p","user-data"]
         command: ["cp", "/base/.condarc",".condarc"]
         command: ["s3fs", "cloudquant:/mktdb5", "market-data", "-o", "allow_other", "-o", "endpoint=us-east-2", "-o", "passwd_file=/base/.general-passwd-s3fs", "-o", "umask=222"]
         command: ["s3fs", "cloudquant:/mktdb5/alternative-datasets", "alternative-datasets", "-o", "allow_other", "-o", "endpoint=us-east-2", "-o", "passwd_file=/base/.general-passwd-s3fs", "-o", "umask=222"]
