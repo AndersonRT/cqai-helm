@@ -40,6 +40,15 @@ hub:
     tmpVal = os.environ.get("JUPYTERHUB_USER")
     
     c.Spawner.cmd = ['jupyter-labhub']
+
+    #from subprocess import check_call
+    #def my_hook(spawner):
+    #  username = spawner.user.name
+    #  check_call(['./examples/bootstrap-script/bootstrap.sh', username])
+
+    #c.Spawner.pre_spawn_hook = my_hook
+
+
     c.KubeSpawner.environment = {'test1':str(tmpVal),'test2':'b'}
     c.JupyterHub.authenticator_class = 'hashauthenticator.HashAuthenticator'
     c.HashAuthenticator.secret_key = 'test'  # Defaults to ''
@@ -56,6 +65,7 @@ hub:
         )
         return pod
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
+    c.KubeSpawner.environment = {'test1':'a','test2':'b'}
     
     
   extraConfigMap: {}
