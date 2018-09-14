@@ -49,8 +49,19 @@ hub:
     #c.Spawner.pre_spawn_hook = my_hook
 
     import hashauthenticator
+    class MyAuthenticator(hashauthenticator.HashAuthenticator):
+      from tornado import gen
 
-    c.JupyterHub.authenticator_class = 'hashauthenticator.HashAuthenticator'
+      @gen.corountine
+      def pre_spawn_start(self,user,spawner):
+        auth_state = yield user.get_auth_state()
+        if not auth_state:
+          return
+        spawner.environment['BLAH']='BLAH'
+
+
+
+    c.JupyterHub.authenticator_class = 'MyAuthenticator' #'hashauthenticator.HashAuthenticator'
     c.HashAuthenticator.secret_key = 'test'  # Defaults to ''
     c.HashAuthenticator.password_length = 6          # Defaults to 6
     c.HashAuthenticator.show_logins = True            # Optional, defaults to False
@@ -168,7 +179,7 @@ auth:
     users:
     - admin
   custom:
-    className: 'hashauthenticator.HashAuthenticator'
+    className: 'MyAuthenticator' #'hashauthenticator.HashAuthenticator'
   state:
     enabled: false
     cryptoKey:
