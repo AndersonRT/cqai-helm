@@ -69,7 +69,7 @@ hub:
     #c.KubeSpawner.environment = {'test1':'a','test2':'b'}
     import time
     c.KubeSpawner.environment = {
-       "DEFAULT_ARGS": str(os.environ),
+       "DEFAULT_ARGS": str(c.KubeSpawner.get_args()),
        "CURRENT_TIME": str(time.time())
     }
     
