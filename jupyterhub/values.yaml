@@ -52,7 +52,7 @@ hub:
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
       from tornado import gen
 
-      @gen.corountine
+      @gen.coroutine
       def pre_spawn_start(self,user,spawner):
         auth_state = yield user.get_auth_state()
         if not auth_state:
