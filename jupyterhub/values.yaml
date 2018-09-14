@@ -61,7 +61,7 @@ hub:
 
 
 
-    c.JupyterHub.authenticator_class = 'MyAuthenticator' #'hashauthenticator.HashAuthenticator'
+    c.JupyterHub.authenticator_class = MyAuthenticator #'hashauthenticator.HashAuthenticator'
     c.HashAuthenticator.secret_key = 'test'  # Defaults to ''
     c.HashAuthenticator.password_length = 6          # Defaults to 6
     c.HashAuthenticator.show_logins = True            # Optional, defaults to False
@@ -179,7 +179,7 @@ auth:
     users:
     - admin
   custom:
-    className: 'MyAuthenticator' #'hashauthenticator.HashAuthenticator'
+    className: 'hashauthenticator.HashAuthenticator'
   state:
     enabled: false
     cryptoKey:
