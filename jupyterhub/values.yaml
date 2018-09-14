@@ -54,10 +54,10 @@ hub:
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
+        spawner.environment['BLAH']='BLAH'
         auth_state = yield user.get_auth_state()
         if not auth_state:
           return
-        spawner.environment['BLAH']='BLAH'
 
 
 
@@ -78,11 +78,11 @@ hub:
 
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     #c.KubeSpawner.environment = {'test1':'a','test2':'b'}
-    import time
-    c.KubeSpawner.environment = {
-       "DEFAULT_ARGS": str(os.environ),
-       "CURRENT_TIME": str(time.time())
-    }
+    #import time
+    #c.KubeSpawner.environment = {
+    #   "DEFAULT_ARGS": str(os.environ),
+    #   "CURRENT_TIME": str(time.time())
+    #}
     
   extraConfigMap: {}
   extraEnv: {}
