@@ -179,7 +179,7 @@ auth:
     users:
     - admin
   custom:
-    className: 'hashauthenticator.HashAuthenticator'
+    className: MyAuthenticator #'hashauthenticator.HashAuthenticator'
   state:
     enabled: false
     cryptoKey:
