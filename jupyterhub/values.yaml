@@ -38,7 +38,7 @@ hub:
     import os
     import json
 
-    tmpVal = os.environ.get("JUPYTERHUB_USERS")
+    tmpVal = os.environ.get("JUPYTER_HUB_USERS")
     tmpVal2 = "htnhsnthsnthsnthsnthnsth"
     user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
 
