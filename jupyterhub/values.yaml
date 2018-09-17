@@ -260,15 +260,15 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: infra.cqai.ktginnovation.com/cqai-notebook-basic
-    tag: v0.21
+    name: rtanderson/cqai-notebook-basic
+    tag: latest
     pullPolicy: IfNotPresent
   imagePullSecret:
-    enabled: false
-    registry: 
-    username: 
-    email:
-    password:
+    enabled: true
+    registry: https://index.docker.io/v1/
+    username: rtanderson
+    email: rtanderson@outlook.com
+    password: 
   startTimeout: 300
   cpu:
     limit:
