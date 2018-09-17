@@ -38,32 +38,10 @@ hub:
     import os
     import json
 
-    tmpVal = os.environ.get("JUPYTER_HUB_USERS")
-    tmpVal2 = "htnhsnthsnthsnthsnthnsth"
-    tmpVal3 = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
-    tmpVal3 = "{"+tmpVal3[1:-1]+"}"
-    print(tmpVal3)
-    print(type(tmpVal3))
-    tmpVal4 = json.loads(tmpVal3)
-    print(tmpVal4)
-    print(type(tmpVal4))
-    #user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
-
-    tmpVal4 = tmpVal4['randerson']
-    print(tmpVal4)
-
-
-    #username_list = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
-
+    aws_user_secrets = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
+    aws_user_secrets = json.loads("{"+aws_user_secrets[1:-1]+"}")
 
     c.Spawner.cmd = ['jupyter-labhub']
-
-    #from subprocess import check_call
-    #def my_hook(spawner):
-    #  username = spawner.user.name
-    #  check_call(['./examples/bootstrap-script/bootstrap.sh', username])
-
-    #c.Spawner.pre_spawn_hook = my_hook
 
     import hashauthenticator
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
@@ -73,13 +51,11 @@ hub:
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
-        spawner.environment['USER_ENV_PARAMS']=spawner.user.name
-        #spawner.environment['USER_ENV_PARAMS']=user_env_params[str(spawner.user.name)]
+        spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
         if not auth_state:
           return
-
-
+        spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
 
 
     c.JupyterHub.authenticator_class = MyAuthenticator #'hashauthenticator.HashAuthenticator'
@@ -99,13 +75,13 @@ hub:
 
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     #c.KubeSpawner.environment = {'test1':'a','test2':'b'}
-    import time
-    c.KubeSpawner.environment = {
-       "DEFAULT_ARGS": str(os.environ),
-       "CURRENT_TIME": str(time.time()),
-       "TTT":tmpVal3,
-       "TTT2":tmpVal4
-    }
+    #import time
+    #c.KubeSpawner.environment = {
+    #   "DEFAULT_ARGS": str(os.environ),
+    #   "CURRENT_TIME": str(time.time()),
+    #   "TTT":tmpVal3,
+    #   "TTT2":tmpVal4
+    #}
     
   extraConfigMap: {}
   extraEnv: {}
