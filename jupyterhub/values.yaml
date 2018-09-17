@@ -40,7 +40,8 @@ hub:
 
     tmpVal = os.environ.get("JUPYTER_HUB_USERS")
     tmpVal2 = "htnhsnthsnthsnthsnthnsth"
-    user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
+    tmpVal3 = os.environ.get("JUPYTER_HUB_USERS")
+    #user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
 
 
 
@@ -64,7 +65,8 @@ hub:
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
-        spawner.environment['USER_ENV_PARAMS']=user_env_params[str(spawner.user.name)]
+        spawner.environment['USER_ENV_PARAMS']=spawner.user.name
+        #spawner.environment['USER_ENV_PARAMS']=user_env_params[str(spawner.user.name)]
         auth_state = yield user.get_auth_state()
         if not auth_state:
           return
@@ -92,7 +94,8 @@ hub:
     import time
     c.KubeSpawner.environment = {
        "DEFAULT_ARGS": str(os.environ),
-       "CURRENT_TIME": str(time.time())
+       "CURRENT_TIME": str(time.time()),
+       "TTT":tmpVal3
     }
     
   extraConfigMap: {}
