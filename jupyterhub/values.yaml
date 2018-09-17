@@ -82,8 +82,8 @@ hub:
   extraVolumes: []
   extraVolumeMounts: []
   image:
-    name: infra.cqai.ktginnovation.com/jhub
-    tag: 'latest'
+    name: rtanderson/cqai-jupyterhub
+    tag: v0.1
   resources:
     requests:
       cpu: 200m
