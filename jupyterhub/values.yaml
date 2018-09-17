@@ -42,7 +42,10 @@ hub:
     tmpVal2 = "htnhsnthsnthsnthsnthnsth"
     tmpVal3 = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
     print(tmpVal3)
+    print(type(tmpVal3))
     tmpVal4 = json.loads(tmpVal3)
+    print(tmpVal4)
+    print(type(tmpVal4))
     #user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
 
     tmpVal3 = tmpVal3['randerson']
