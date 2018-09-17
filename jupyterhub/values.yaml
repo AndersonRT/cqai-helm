@@ -43,7 +43,7 @@ hub:
     import json
 
     username_list = os.environ.get("JUPYTER_HUB_USERS")
-    username_dict = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
+    username_dict = json.loads(username_list)
 
 
     c.Spawner.cmd = ['jupyter-labhub']
@@ -91,8 +91,7 @@ hub:
        "DEFAULT_ARGS": str(os.environ),
        "CURRENT_TIME": str(time.time()),
        "TEMPORARY_VAL": str(tmpVal2),
-       "A1": str(username_dict),
-       "A2": str(username_dict['randerson'])
+       "A1": str(username_dict)
     }
     
   extraConfigMap: {}
