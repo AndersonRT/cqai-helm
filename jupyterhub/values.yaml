@@ -58,7 +58,7 @@ hub:
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
       from tornado import gen
 
-      user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
+      user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
