@@ -42,8 +42,7 @@ hub:
 
     import json
 
-    #username_list = os.environ.get("JUPYTER_HUB_USERS")
-    #username_dict = json.loads(username_list)
+    username_list = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
 
 
     c.Spawner.cmd = ['jupyter-labhub']
@@ -59,9 +58,11 @@ hub:
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
       from tornado import gen
 
+      user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
+
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
-        spawner.environment['BLAH']=str(os.environ)+str(spawner.user.name)
+        spawner.environment['USER_ENV_PARAMS']=user_env_params[str(spawner.user.name)]
         auth_state = yield user.get_auth_state()
         if not auth_state:
           return
@@ -89,9 +90,7 @@ hub:
     import time
     c.KubeSpawner.environment = {
        "DEFAULT_ARGS": str(os.environ),
-       "CURRENT_TIME": str(time.time()),
-       "TEMPORARY_VAL": str(tmpVal2),
-       "A1": tmpVal
+       "CURRENT_TIME": str(time.time())
     }
     
   extraConfigMap: {}
