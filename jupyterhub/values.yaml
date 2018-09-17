@@ -39,7 +39,13 @@ hub:
     
     tmpVal = os.environ.get("JUPYTERHUB_USER")
     tmpVal2 = "htnhsnthsnthsnthsnthnsth"
-    
+
+    import json
+
+    username_list = os.environ.get("JUPYTER_HUB_USERS")
+    username_dict = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
+
+
     c.Spawner.cmd = ['jupyter-labhub']
 
     #from subprocess import check_call
@@ -59,6 +65,7 @@ hub:
         auth_state = yield user.get_auth_state()
         if not auth_state:
           return
+
 
 
 
@@ -83,7 +90,9 @@ hub:
     c.KubeSpawner.environment = {
        "DEFAULT_ARGS": str(os.environ),
        "CURRENT_TIME": str(time.time()),
-       "TEMPORARY_VAL": str(tmpVal2)
+       "TEMPORARY_VAL": str(tmpVal2),
+       "A1": str(username_dict),
+       "A2": str(username_dict['randerson'])
     }
     
   extraConfigMap: {}
