@@ -40,7 +40,7 @@ hub:
 
     tmpVal = os.environ.get("JUPYTER_HUB_USERS")
     tmpVal2 = "htnhsnthsnthsnthsnthnsth"
-    tmpVal3 = os.environ.get("JUPYTER_HUB_USERS")
+    tmpVal3 = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
     #user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
 
 
