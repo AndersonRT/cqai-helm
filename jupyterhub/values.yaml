@@ -40,9 +40,10 @@ hub:
 
     tmpVal = os.environ.get("JUPYTER_HUB_USERS")
     tmpVal2 = "htnhsnthsnthsnthsnthnsth"
-    tmpVal3 = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
+    tmpVal3 = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
     #user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
 
+    tmpVal3 = tmpVal3['randerson']
 
 
     #username_list = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
