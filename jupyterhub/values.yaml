@@ -40,7 +40,9 @@ hub:
 
     tmpVal = os.environ.get("JUPYTER_HUB_USERS")
     tmpVal2 = "htnhsnthsnthsnthsnthnsth"
-    tmpVal3 = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
+    tmpVal3 = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
+    print(tmpVal3)
+    tmpVal4 = json.loads(tmpVal3)
     #user_env_params = json.loads(os.environ.get("JUPYTER_HUB_USERS").replace("~_~",","))
 
     tmpVal3 = tmpVal3['randerson']
@@ -96,7 +98,8 @@ hub:
     c.KubeSpawner.environment = {
        "DEFAULT_ARGS": str(os.environ),
        "CURRENT_TIME": str(time.time()),
-       "TTT":tmpVal3
+       "TTT":tmpVal3,
+       "TTT2":tmpVal4
     }
     
   extraConfigMap: {}
