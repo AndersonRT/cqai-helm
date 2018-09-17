@@ -42,7 +42,7 @@ hub:
 
     import json
 
-    username_list = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
+    #username_list = json.loads(os.environ.get("JUPYTER_HUB_USERS"))
 
 
     c.Spawner.cmd = ['jupyter-labhub']
