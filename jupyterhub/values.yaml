@@ -229,6 +229,12 @@ singleuser:
             s3fs cloudquant:/mktdb5/alternative-datasets alternative-datasets -o allow_other -o endpoint=us-east-2 -o passwd_file=/base/.general-passwd-s3fs -o umask=222;
             s3fs cqai-shared-scripts shared-scripts -o allow_other -o passwd_file=/base/.general-passwd-s3fs -o umask=222;
             s3fs cqai-tutorials tutorials -o allow_other -o passwd_file=/base/.general-passwd-s3fs -o umask=222;
+
+            echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs
+            chmod 600 /home/jovyan/.passwd-s3fs
+            s3fs cqai-user-data:/home/${JUPYTERHUB_USER} ${JUPYTERHUB_USER} -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=000;
+
+
   initContainers:
   nodeSelector: {}
   uid: 1000
