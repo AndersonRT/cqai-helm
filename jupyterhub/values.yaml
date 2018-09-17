@@ -38,6 +38,7 @@ hub:
     import os
     
     tmpVal = os.environ.get("JUPYTERHUB_USER")
+    tmpVal2 = "htnhsnthsnthsnthsnthnsth"
     
     c.Spawner.cmd = ['jupyter-labhub']
 
@@ -79,10 +80,11 @@ hub:
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     #c.KubeSpawner.environment = {'test1':'a','test2':'b'}
     #import time
-    #c.KubeSpawner.environment = {
-    #   "DEFAULT_ARGS": str(os.environ),
-    #   "CURRENT_TIME": str(time.time())
-    #}
+    c.KubeSpawner.environment = {
+       "DEFAULT_ARGS": str(os.environ),
+       "CURRENT_TIME": str(time.time()),
+       "TEMPORARY_VAL": str(tmpVal2)
+    }
     
   extraConfigMap: {}
   extraEnv: {}
