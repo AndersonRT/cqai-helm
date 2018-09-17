@@ -55,8 +55,7 @@ hub:
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
-        spawner.environment['BLAH']=str(os.environ)
-        spawner.environment['MY_USER"]=spawner.user
+        spawner.environment['BLAH']=str(os.environ)+str(spawner.user)
         auth_state = yield user.get_auth_state()
         if not auth_state:
           return
