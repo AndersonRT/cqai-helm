@@ -41,7 +41,7 @@ hub:
     aws_user_secrets = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
     aws_user_secrets = json.loads("{"+aws_user_secrets[1:-1]+"}")
 
-    c.Spawner.cmd = ['jupyter-labhub']
+    #c.Spawner.cmd = ['jupyter-labhub']
 
     import hashauthenticator
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
@@ -176,25 +176,6 @@ auth:
     enabled: false
     cryptoKey:
 
-
-#auth:
-#  type: dummy
-#  whitelist:
-#    users:
-#  admin:
-#    access: true
-#    users:
-#  dummy:
-#    password:
-#  ldap:
-#    dn:
-#      search: {}
-#      user: {}
-#    user: {}
-#  state:
-#    enabled: false
-#    cryptoKey:
-
 singleuser:
   networkTools:
     image:
@@ -252,7 +233,7 @@ singleuser:
     static:
       pvcName:
       subPath: '{username}'
-    capacity: 10Gi
+    capacity: 30Gi
     homeMountPath: /home/jovyan
     dynamic:
       storageClass: longhorn
@@ -271,10 +252,10 @@ singleuser:
     password: 
   startTimeout: 300
   cpu:
-    limit:
-    guarantee:
+    limit: 8
+    guarantee: 1
   memory:
-    limit:
+    limit: 4G
     guarantee: 1G
   extraResource:
     limits: {}
