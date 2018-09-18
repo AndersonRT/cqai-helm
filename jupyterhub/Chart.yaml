@@ -7,4 +7,4 @@ name: jupyterhub
 sources:
 - https://github.com/jupyterhub/zero-to-jupyterhub-k8s
 tillerVersion: '>=2.9.1-0'
-version: 0.87
+version: 0.88
