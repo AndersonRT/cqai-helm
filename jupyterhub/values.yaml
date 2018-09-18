@@ -207,13 +207,14 @@ singleuser:
             echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             chmod 600 /home/jovyan/.passwd-s3fs;
             
-            mkdir market-data shared-scripts tutorials alternative-datasets user-data ${JUPYTERHUB_USER};
+            mkdir market-data shared-scripts tutorials user-data;
             cp /base/.condarc .condarc;
             s3fs cloudquant:/mktdb5 market-data -o allow_other -o endpoint=us-east-2 -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
-            s3fs cloudquant:/mktdb5/alternative-datasets alternative-datasets -o allow_other -o endpoint=us-east-2 -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
-            s3fs cqai-shared-scripts shared-scripts -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
+            s3fs cloudquant:/mktdb5/alternative-datasets /srv/alternative-datasets -o allow_other -o endpoint=us-east-2 -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
+            s3fs cqai-shared-scripts shared-scripts -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=000;
             s3fs cqai-tutorials tutorials -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
-            s3fs cqai-user-data:/home/${JUPYTERHUB_USER} ${JUPYTERHUB_USER} -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=000;
+            s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=000;
+            ln -s /srv/alternative-datasets alternative-datasets;
 
   initContainers:
   nodeSelector: {}
@@ -253,10 +254,10 @@ singleuser:
   startTimeout: 300
   cpu:
     limit: 8.0
-    guarantee: 2.0
+    guarantee: 4.0
   memory:
-    limit: 4G
-    guarantee: 2G
+    limit: 8G
+    guarantee: 4G
   extraResource:
     limits: {}
     guarantees: {}
