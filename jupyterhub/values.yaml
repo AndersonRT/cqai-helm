@@ -252,11 +252,11 @@ singleuser:
     password: 
   startTimeout: 300
   cpu:
-    limit: 8
-    guarantee: 1
+    limit: 8.0
+    guarantee: 2.0
   memory:
     limit: 4G
-    guarantee: 1G
+    guarantee: 2G
   extraResource:
     limits: {}
     guarantees: {}
