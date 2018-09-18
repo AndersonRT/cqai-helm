@@ -234,7 +234,7 @@ singleuser:
     static:
       pvcName:
       subPath: '{username}'
-    capacity: 30Gi
+    capacity: 20Gi
     homeMountPath: /home/jovyan
     dynamic:
       storageClass: longhorn
