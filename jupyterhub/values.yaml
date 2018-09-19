@@ -282,9 +282,10 @@ prePuller:
 
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
-  hosts: []
+  hosts: 
+    - starc.cqai.ktginnovation.com
   tls:
 
 
