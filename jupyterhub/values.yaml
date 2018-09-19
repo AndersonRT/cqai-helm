@@ -18,8 +18,8 @@ hub:
     # This is required for upgrading to work
     rollingUpdate:
   db:
-    type: sqlite-memory
-    upgrade:
+    type: sqlite-pvc
+    upgrade: true
     pvc:
       annotations: {}
       selector: {}
@@ -27,7 +27,7 @@ hub:
         - ReadWriteOnce
       storage: 1Gi
       subPath:
-      storageClassName:
+      storageClassName: longhorn
     url:
   labels: {}
   annotations:
@@ -223,7 +223,7 @@ singleuser:
   serviceAccountName:
   schedulerStrategy:
   storage:
-    type: none #dynamic
+    type: dynamic
     extraVolumes:
       - name: fuse
         hostPath:
