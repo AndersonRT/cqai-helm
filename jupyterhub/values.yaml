@@ -285,7 +285,7 @@ ingress:
   enabled: true
   annotations: {}
   hosts: 
-    - starc.cqai.ktginnovation.com
+    - start.cqai.ktginnovation.com
   tls:
 
 
