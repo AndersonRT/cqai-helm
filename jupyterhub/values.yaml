@@ -27,7 +27,7 @@ hub:
         - ReadWriteOnce
       storage: 1Gi
       subPath:
-      storageClassName: longhorn
+      storageClassName:
     url:
   labels: {}
   annotations:
