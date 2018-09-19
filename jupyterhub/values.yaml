@@ -19,7 +19,7 @@ hub:
     rollingUpdate:
   db:
     type: sqlite-pvc
-    upgrade: true
+    upgrade:
     pvc:
       annotations: {}
       selector: {}
