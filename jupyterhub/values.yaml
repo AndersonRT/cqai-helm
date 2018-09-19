@@ -223,7 +223,7 @@ singleuser:
   serviceAccountName:
   schedulerStrategy:
   storage:
-    type: dynamic
+    type: none #dynamic
     extraVolumes:
       - name: fuse
         hostPath:
