@@ -25,9 +25,9 @@ hub:
       selector: {}
       accessModes:
         - ReadWriteOnce
-      storage: 1Gi
+      storage: 2Gi
       subPath:
-      storageClassName:
+      storageClassName: longhorn
     url:
   labels: {}
   annotations:
