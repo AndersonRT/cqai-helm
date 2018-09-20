@@ -293,9 +293,9 @@ ingress:
 
 
 cull:
-  enabled: true
+  enabled: false
   users: false
-  timeout: 3600
+  timeout: 360
   every: 600
   concurrency: 10
   maxAge: 0
