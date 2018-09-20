@@ -212,13 +212,13 @@ singleuser:
             mkdir -p tutorials;
             mkdir -p user-data;
             
-            cp /base/.condarc .condarc;
+            #cp /base/.condarc .condarc;
             s3fs cloudquant:/mktdb5 market-data -o allow_other -o endpoint=us-east-2 -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
             s3fs cloudquant:/mktdb5/alternative-datasets /srv/alternative-datasets -o allow_other -o endpoint=us-east-2 -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
             s3fs cqai-shared-scripts shared-scripts -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=000;
             s3fs cqai-tutorials tutorials -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=222;
             s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=/home/jovyan/.passwd-s3fs -o umask=000;
-            ln -s /srv/alternative-datasets /home/jovyan;
+            ln -sf /srv/alternative-datasets /home/jovyan;
 
   initContainers:
   nodeSelector: {}
