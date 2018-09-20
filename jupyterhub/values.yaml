@@ -294,7 +294,7 @@ ingress:
 
 
 cull:
-  enabled: true
+  enabled: false
   users: false
   timeout: 360
   every: 600
