@@ -203,6 +203,7 @@ singleuser:
         command: 
           - "sh"
           - "-c"
+          - "-e"
           - >
             echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             chmod 600 /home/jovyan/.passwd-s3fs;
