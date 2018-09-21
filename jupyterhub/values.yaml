@@ -255,7 +255,7 @@ singleuser:
     username: rtanderson
     email: rtanderson@outlook.com
     password: 
-  startTimeout: 300
+  startTimeout: 600
   cpu:
     limit: 16.0
     guarantee: 1.0
