@@ -18,16 +18,16 @@ hub:
     # This is required for upgrading to work
     rollingUpdate:
   db:
-    type: sqlite-memory
+    type: sqlite-pvc
     upgrade:
     pvc:
       annotations: {}
       selector: {}
       accessModes:
-        - ReadWriteOnce
-      storage: 2Gi
+        - ReadWriteMany
+      storage: 10Gi
       subPath:
-      storageClassName: longhorn2
+      storageClassName:
     url:
   labels: {}
   annotations:
