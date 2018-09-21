@@ -257,10 +257,10 @@ singleuser:
     password: 
   startTimeout: 300
   cpu:
-    limit: 8.0
-    guarantee: 4.0
+    limit: 16.0
+    guarantee: 1.0
   memory:
-    limit: 8G
+    limit: 32G
     guarantee: 4G
   extraResource:
     limits: {}
