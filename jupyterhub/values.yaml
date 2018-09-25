@@ -18,7 +18,7 @@ hub:
     # This is required for upgrading to work
     rollingUpdate:
   db:
-    type: sqlite-memory
+    type: postgres
     upgrade:
     pvc:
       annotations: {}
@@ -28,7 +28,7 @@ hub:
       storage: 10Gi
       subPath:
       storageClassName:
-    url:
+    url: 
   labels: {}
   annotations:
     prometheus.io/scrape: 'true'
