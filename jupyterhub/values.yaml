@@ -239,11 +239,13 @@ singleuser:
       - name: testnfs
         persistentVolumeClaim:
           claimName: test-nfs-mount-pvc
+        readOnly: true
     extraVolumeMounts:
       - name: fuse
         mountPath: /dev/fuse
       - name: testnfs
         mountPath: /testnfs
+        readOnly: true
     static:
       pvcName:
       subPath: '{username}'
