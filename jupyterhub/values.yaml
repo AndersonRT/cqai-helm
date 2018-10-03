@@ -236,9 +236,14 @@ singleuser:
       - name: fuse
         hostPath:
           path: /dev/fuse
+      - name: testnfs
+        persistentVolumeClaim:
+          claimName: test-nfs-mount-pvc
     extraVolumeMounts:
       - name: fuse
         mountPath: /dev/fuse
+      - name: testnfs
+        mountPath: /testnfs
     static:
       pvcName:
       subPath: '{username}'
