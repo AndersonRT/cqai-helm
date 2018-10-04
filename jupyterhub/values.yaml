@@ -263,6 +263,7 @@ singleuser:
         readOnly: true
       - name: testnfs
         mountPath: /testnfs/{username}
+        subPath: {username}
         readOnly: true
     static:
       pvcName:
