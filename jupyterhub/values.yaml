@@ -213,6 +213,7 @@ singleuser:
             mkdir -p tutorials;
             mkdir -p user-data;
             mkdir -p alternative-datasets;
+            mkdir -p cqai-data;
             mkdir -p custom-env;
             mkdir -p custom-env/envs;
             mkdir -p custom-env/pkgs;
