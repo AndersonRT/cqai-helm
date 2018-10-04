@@ -222,7 +222,7 @@ singleuser:
             ln -sf /srv/shared-scripts/* shared-scripts;
             ln -sf /srv/tutorials/* tutorials;
             ln -sf /srv/cqai/data/* cqai-data;
-            ls -sf /srv/cqai/data/mktdb5/* market-data;
+            ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
 
   initContainers:
