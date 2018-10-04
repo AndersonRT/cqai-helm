@@ -262,8 +262,8 @@ singleuser:
         mountPath: /srv/cqai/data
         readOnly: true
       - name: testnfs
-        mountPath: /testnfs/{username}
-        subPath: {username}
+        mountPath: /testnfs/randersontest
+        subPath: randersontest
         readOnly: true
     static:
       pvcName:
