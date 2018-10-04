@@ -262,7 +262,7 @@ singleuser:
         mountPath: /srv/cqai/data
         readOnly: true
       - name: testnfs
-        mountPath: /testnfs/${JUPYTERHUB_USER}
+        mountPath: /testnfs/{username}
         readOnly: true
     static:
       pvcName:
