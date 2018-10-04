@@ -243,6 +243,9 @@ singleuser:
       - name: tutorials-nfs
         persistentVolumeClaim:
           claimName: cqai-tutorials-pvc
+      - name: cqai-data-nfs
+        persistentVolumeClaim:
+          claimName: cqai-data-pvc
       - name: testnfs
         persistentVolumeClaim:
           claimName: test-nfs-mount-pvc
@@ -255,6 +258,9 @@ singleuser:
       - name: tutorials-nfs
         mountPath: /srv/tutorials
         readOnly: false
+      - name: cqai-data-nfs
+        mountPath: /srv/cqai/data
+        readOnly: true
       - name: testnfs
         mountPath: /testnfs
         readOnly: true
