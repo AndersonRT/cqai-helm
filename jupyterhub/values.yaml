@@ -74,8 +74,8 @@ hub:
         return pod
 
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
-    c.Authenticator.admin_users = {'randersontest', 'wchen'}
-    c.JupyterHub.admin_access = True
+    #c.Authenticator.admin_users = {'randersontest', 'wchen'}
+    #c.JupyterHub.admin_access = True
     
   extraConfigMap: {}
   extraEnv: {}
