@@ -206,10 +206,12 @@ singleuser:
           - "-c"
           - "-e"
           - >
-            echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
-            chmod 600 /home/jovyan/.passwd-s3fs;
+            #echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
+            #chmod 600 /home/jovyan/.passwd-s3fs;
             
+            mkdir -p shared-scripts/readonly shared-scripts/
             mkdir -p market-data;
+            
             #mkdir -p shared-scripts;
             mkdir -p tutorials;
             #mkdir -p user-data;
