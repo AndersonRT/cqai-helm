@@ -210,7 +210,7 @@ singleuser:
             chmod 600 /home/jovyan/.passwd-s3fs;
             
             mkdir -p market-data;
-            mkdir -p shared-scripts;
+            #mkdir -p shared-scripts;
             mkdir -p tutorials;
             #mkdir -p user-data;
             mkdir -p cqai-data;
