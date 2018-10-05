@@ -254,11 +254,11 @@ singleuser:
         mountPath: /dev/fuse
       - name: shared-scripts-nfs
         mountPath: /srv/shared-scripts/readonly
-        subPath: /readonly
+        subPath: readonly
         readOnly: true
       - name: shared-scripts-nfs
         mountPath: /srv/shared-scripts/editable
-        subPath: /editable
+        subPath: editable
         readOnly: false
       - name: tutorials-nfs
         mountPath: /srv/tutorials
