@@ -272,7 +272,7 @@ singleuser:
         readOnly: true
     static:
       pvcName: claim-{username}
-      subPath: /
+      subPath: 'home/{username}'
     capacity: 20Gi
     homeMountPath: /home/jovyan
     #dynamic:
