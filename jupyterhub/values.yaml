@@ -213,7 +213,7 @@ singleuser:
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
             ln -sf /srv/shared-scripts/editable/* shared-scripts/editable;
-            ln -sf /srv/tutorials tutorials;
+            ln -sf /srv/tutorials/* tutorials;
             ln -sf /srv/cqai/data/* cqai-data;
             ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
