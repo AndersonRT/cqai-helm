@@ -232,9 +232,6 @@ singleuser:
   storage:
     type: static
     extraVolumes:
-      - name: fuse
-        hostPath:
-          path: /dev/fuse
       - name: shared-scripts-nfs
         persistentVolumeClaim:
           claimName: cqai-shared-scripts-pvc
@@ -248,8 +245,6 @@ singleuser:
         persistentVolumeClaim:
           claimName: test-nfs-mount-pvc
     extraVolumeMounts:
-      - name: fuse
-        mountPath: /dev/fuse
       - name: shared-scripts-nfs
         mountPath: /srv/shared-scripts/readonly
         subPath: readonly
