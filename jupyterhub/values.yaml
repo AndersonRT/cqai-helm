@@ -206,15 +206,11 @@ singleuser:
           - "-c"
           - "-e"
           - >
-            
-            
             mkdir -p shared-scripts/readonly shared-scripts/editable;
             mkdir -p market-data;
-
             mkdir -p tutorials;
             mkdir -p cqai-data;
             mkdir -p custom-env/envs custom-env/pkgs;
-            
             ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
             ln -sf /srv/shared-scripts/editable/* shared-scripts/editable;
             ln -sf /srv/tutorials tutorials;
