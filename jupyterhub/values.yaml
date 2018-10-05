@@ -275,7 +275,7 @@ singleuser:
       #subPath: '{username}'
     capacity: 20Gi
     homeMountPath: /home/jovyan
-    dynamic:
+    #dynamic:
       #storageClass: longhorn2
       #pvcNameTemplate: claim-{username}{servername}
       #volumeNameTemplate: volume-{username}{servername}
