@@ -212,15 +212,15 @@ singleuser:
             mkdir -p market-data;
             mkdir -p shared-scripts;
             mkdir -p tutorials;
-            mkdir -p user-data;
+            #mkdir -p user-data;
             mkdir -p cqai-data;
             mkdir -p custom-env;
             mkdir -p custom-env/envs;
             mkdir -p custom-env/pkgs;
             
-            s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=.passwd-s3fs -o umask=000;
-            ln -sf /srv/shared-scripts/* shared-scripts;
-            ln -sf /srv/tutorials/* tutorials;
+            #s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=.passwd-s3fs -o umask=000;
+            ln -sf /srv/shared-scripts shared-scripts;
+            ln -sf /srv/tutorials tutorials;
             ln -sf /srv/cqai/data/* cqai-data;
             ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
@@ -253,11 +253,11 @@ singleuser:
       - name: fuse
         mountPath: /dev/fuse
       - name: shared-scripts-nfs
-        mountPath: /srv/shared-scripts
+        mountPath: /srv/shared-scripts/readonly
         subPath: /readonly
         readOnly: true
       - name: shared-scripts-nfs
-        mountPath: /srv/shared-scripts-editable
+        mountPath: /srv/shared-scripts/editable
         subPath: /editable
         readOnly: false
       - name: tutorials-nfs
