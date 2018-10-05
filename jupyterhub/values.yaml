@@ -232,7 +232,7 @@ singleuser:
   serviceAccountName:
   schedulerStrategy:
   storage:
-    type: dynamic
+    type: static
     extraVolumes:
       - name: fuse
         hostPath:
@@ -254,6 +254,11 @@ singleuser:
         mountPath: /dev/fuse
       - name: shared-scripts-nfs
         mountPath: /srv/shared-scripts
+        subPath: /readonly
+        readOnly: true
+      - name: shared-scripts-nfs
+        mountPath: /srv/shared-scripts-editable
+        subPath: /editable
         readOnly: false
       - name: tutorials-nfs
         mountPath: /srv/tutorials
@@ -266,15 +271,15 @@ singleuser:
         subPath: '{username}'
         readOnly: true
     static:
-      pvcName:
-      subPath: '{username}'
+      pvcName: claim-{username}
+      #subPath: '{username}'
     capacity: 20Gi
     homeMountPath: /home/jovyan
     dynamic:
-      storageClass: longhorn2
-      pvcNameTemplate: claim-{username}{servername}
-      volumeNameTemplate: volume-{username}{servername}
-      storageAccessModes: [ReadWriteOnce]
+      #storageClass: longhorn2
+      #pvcNameTemplate: claim-{username}{servername}
+      #volumeNameTemplate: volume-{username}{servername}
+      #storageAccessModes: [ReadWriteOnce]
   image:
     name: cqai/cqai-notebook-experimental
     tag: v0.1
