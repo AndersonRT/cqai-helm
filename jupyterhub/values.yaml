@@ -229,7 +229,6 @@ singleuser:
             mkdir -p tutorials;
             mkdir -p cqai-data;
             mkdir -p custom-env/envs custom-env/pkgs;
-            ln -sf /srv/tutorials/* tutorials;
             ln -sf /srv/cqai/data/* cqai-data;
             ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
