@@ -254,6 +254,9 @@ singleuser:
   storage:
     type: static
     extraVolumes:
+      - name: shared-scripts-nfs
+        persistentVolumeClaim:
+          claimName: cqai-shared-scripts-pvc
       - name: tutorials-nfs
         persistentVolumeClaim:
           claimName: cqai-tutorials-pvc
@@ -261,6 +264,14 @@ singleuser:
         persistentVolumeClaim:
           claimName: cqai-data-pvc
     extraVolumeMounts:
+      - name: shared-scripts-nfs
+        mountPath: /srv/shared-scripts/readonly
+        subPath: readonly
+        readOnly: true
+      - name: shared-scripts-nfs
+        mountPath: /srv/shared-scripts/editable
+        subPath: editable
+        readOnly: false
       - name: tutorials-nfs
         mountPath: /srv/tutorials
         readOnly: false
