@@ -81,10 +81,14 @@ hub:
     
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     
+    import logging
+    logging.warning("test")
+    
     # Define user uid permission
     try:
       #account_name = str(c.KubeSpawner.user.name)
-      account_name = os.environ.get('USER')
+      #account_name = os.environ.get('USER')
+      account_name = c.JupyterHub.spawner.user.name
       instance_uid = int(user_uids[account_name]) # int(subprocess.check_output(["id", "-u", "randersontest"]))
     except:
       instance_uid = int(1000) #int(user_uid['randersontest'])
