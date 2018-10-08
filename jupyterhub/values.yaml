@@ -83,9 +83,9 @@ hub:
     
     # Define user uid permission
     try:
-      instance_uid = int(subprocess.check_output(["id", "-u", "randersontest"])) #int(user_uids['randersontest'])
+      account_name = str(c.Spawner.user.name)
+      instance_uid = int(user_uids[account_name]) # int(subprocess.check_output(["id", "-u", "randersontest"]))
     except:
-      #user_uids = {'randersontest':1002, 'randerson':1000}
       instance_uid = int(1000) #int(user_uid['randersontest'])
     
     c.KubeSpawner.uid = instance_uid
