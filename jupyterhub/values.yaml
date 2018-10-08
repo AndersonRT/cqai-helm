@@ -227,6 +227,8 @@ singleuser:
             mkdir -p shared-scripts;
             mkdir -p market-data;
             mkdir -p tutorials;
+            mkdir -p tutorials/readonly;
+            mkdir -p tutorials/editable;
             mkdir -p cqai-data;
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/cqai/data/* cqai-data;
