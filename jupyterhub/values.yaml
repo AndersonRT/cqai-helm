@@ -88,7 +88,7 @@ hub:
       user_uids = {'randersontest':1002, 'randerson':1000}
       instance_uid = int(user_uid['randersontest'])
     
-    c.KubeSpawner.singleuser_uid = instance_uid
+    c.KubeSpawner.singleuser_uid = 1002
     
     #c.Authenticator.admin_users = {'randersontest', 'wchen'}
     #c.JupyterHub.admin_access = True
