@@ -58,6 +58,7 @@ hub:
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
+        spawner.uid = int(1002)
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
         if not auth_state:
