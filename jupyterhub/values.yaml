@@ -63,7 +63,7 @@ hub:
         except:
           spawner.uid = 1000
           
-        spawner.environment['USER_PERMISSION'] = spawner.uid  
+        spawner.environment['USER_PERMISSION']=str(spawner.uid)  
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
         if not auth_state:
@@ -221,6 +221,7 @@ singleuser:
           - "-c"
           - "-e"
           - >
+            echo ${USER_PERMISSION};
             echo jovyan:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
           
