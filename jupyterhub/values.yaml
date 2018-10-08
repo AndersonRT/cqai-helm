@@ -224,22 +224,15 @@ singleuser:
             echo ${USER_PERMISSION};
             echo jovyan:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
-          
             mkdir -p shared-scripts;
-            #mkdir -p shared-scripts/readonly; 
-            #mkdir -p shared-scripts/editable;
             mkdir -p market-data;
             mkdir -p tutorials;
-            #mkdir -p tutorials/readonly;
-            #mkdir -p tutorials/editable;
             mkdir -p cqai-data;
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/tutorials/* tutorials;
             ln -sf /srv/cqai/data/* cqai-data;
             ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
-            
-            # chmod -w /etc/passwd;
             ln -sf /srv/tutorials/readonly/* tutorials/readonly;
             ln -sf /srv/tutorials/editable/* tutorials/editable;
             ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
