@@ -74,6 +74,8 @@ hub:
         return pod
 
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
+    
+    c.KubeSpawner.singleuser_uid = 1002
     #c.Authenticator.admin_users = {'randersontest', 'wchen'}
     #c.JupyterHub.admin_access = True
     
@@ -228,7 +230,7 @@ singleuser:
 
   initContainers:
   nodeSelector: {}
-  uid: 1002
+  uid: 1000
   fsGid: 100
   serviceAccountName:
   schedulerStrategy:
