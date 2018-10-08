@@ -221,7 +221,7 @@ singleuser:
           - "-e"
           - >
             echo jovyan:x:12530:100::/home/jovyan:/bin/bash >> /etc/passwd;
-            chmod -w /etc/passwd;
+            
           
             mkdir -p shared-scripts;
             mkdir -p shared-scripts/readonly; 
@@ -235,6 +235,7 @@ singleuser:
             ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
             
+            # chmod -w /etc/passwd;
             # ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
             # ln -sf /srv/shared-scripts/editable/* shared-scripts/editable;
             # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
