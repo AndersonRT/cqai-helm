@@ -63,9 +63,6 @@ hub:
         except:
           spawner.uid = 1000
         
-        spawner.fsgid = 1000
-        spawner.gid = 1000
-        
         spawner.environment['USER_PERMISSION']=str(spawner.uid)  
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
@@ -225,7 +222,7 @@ singleuser:
           - "-e"
           - >
             echo ${USER_PERMISSION};
-            echo jovyan:x:${USER_PERMISSION}:1000::/home/jovyan:/bin/bash >> /etc/passwd;
+            echo jovyan:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
           
             mkdir -p shared-scripts;
@@ -233,6 +230,8 @@ singleuser:
             mkdir -p shared-scripts/editable;
             mkdir -p market-data;
             mkdir -p tutorials;
+            mkdir -p tutorials/readonly;
+            mkdir -p tutorials/editable;
             mkdir -p cqai-data;
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/tutorials/* tutorials;
@@ -251,7 +250,7 @@ singleuser:
   initContainers:
   nodeSelector: {}
   uid: 1000
-  fsGid: 1000
+  fsGid: 100
   serviceAccountName:
   schedulerStrategy:
   storage:
@@ -277,6 +276,11 @@ singleuser:
         readOnly: false
       - name: tutorials-nfs
         mountPath: /srv/tutorials
+        subPath: readonly
+        readOnly: true
+      - name: tutorials-nfs
+        mountPath: /srv/tutorials
+        subPath: editable
         readOnly: false
       - name: cqai-data-nfs
         mountPath: /srv/cqai/data
