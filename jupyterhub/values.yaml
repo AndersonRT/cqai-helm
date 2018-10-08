@@ -83,7 +83,7 @@ hub:
     
     # Define user uid permission
     try:
-      instance_uid = int(user_uids['randersontest'])
+      instance_uid = int(subprocess.check_output(["id", "-u", "randersontest"])) #int(user_uids['randersontest'])
     except:
       #user_uids = {'randersontest':1002, 'randerson':1000}
       instance_uid = int(1000) #int(user_uid['randersontest'])
