@@ -53,12 +53,14 @@ hub:
     import hashauthenticator
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
       from tornado import gen
+      import pwd
 
 
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
-        spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
+        # spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
+        spawner.uid = pwd.getpwnam('randersontest').pw_uid
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
         if not auth_state:
