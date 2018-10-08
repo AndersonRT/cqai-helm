@@ -38,6 +38,7 @@ hub:
     import os
     import json
     import subprocess
+    import logging
 
     aws_user_secrets = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
     aws_user_secrets = json.loads("{"+aws_user_secrets[1:-1]+"}")
@@ -62,6 +63,18 @@ hub:
         if not auth_state:
           return
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
+        try:
+          logging.warning(spawner.user.name)
+        except:
+          logging.warning("failed 1")
+        try:
+          logging.warning(user)
+        except:
+          logging.warning("failed 2")
+        try:
+          logging.warning(spawner.uid)
+        except:
+          logging.warning("failed 3")
 
 
     c.JupyterHub.authenticator_class = MyAuthenticator #'hashauthenticator.HashAuthenticator'
