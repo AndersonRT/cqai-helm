@@ -206,7 +206,9 @@ singleuser:
           - "-c"
           - "-e"
           - >
-            mkdir -p shared-scripts/readonly shared-scripts/editable;
+            mkdir -p shared-scripts;
+            mkdir -p shared-scripts/readonly; 
+            mkdir -p shared-scripts/editable;
             mkdir -p market-data;
             mkdir -p tutorials;
             mkdir -p cqai-data;
@@ -241,9 +243,6 @@ singleuser:
       - name: cqai-data-nfs
         persistentVolumeClaim:
           claimName: cqai-data-pvc
-      - name: testnfs
-        persistentVolumeClaim:
-          claimName: test-nfs-mount-pvc
     extraVolumeMounts:
       - name: shared-scripts-nfs
         mountPath: /srv/shared-scripts/readonly
@@ -258,10 +257,6 @@ singleuser:
         readOnly: false
       - name: cqai-data-nfs
         mountPath: /srv/cqai/data
-        readOnly: true
-      - name: testnfs
-        mountPath: /testnfs/user-files
-        subPath: '{username}'
         readOnly: true
     static:
       pvcName: cqai-userdata-pvc
