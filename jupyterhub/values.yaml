@@ -222,7 +222,7 @@ singleuser:
           - "-e"
           - >
             echo ${USER_PERMISSION};
-            echo jovyan:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            echo jovyan:x:${USER_PERMISSION}:1000::/home/jovyan:/bin/bash >> /etc/passwd;
             
           
             mkdir -p shared-scripts;
