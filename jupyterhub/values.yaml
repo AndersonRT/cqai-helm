@@ -228,14 +228,13 @@ singleuser:
             mkdir -p market-data;
             mkdir -p tutorials;
             
-            mkdir -p tutorials/editable;
             mkdir -p cqai-data;
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/cqai/data/* cqai-data;
             ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
-            ln -sf /srv/shared-scripts/editable/* shared-scripts/editable;
-            ln -sf /srv/tutorials/editable/* tutorials/editable;
+            ln -sf /srv/shared-scripts/editable shared-scripts;
+            ln -sf /srv/tutorials/editable tutorials;
             
             ln -sf /srv/tutorials/readonly tutorials;
             ln -sf /srv/shared-scripts/readonly shared-scripts;
