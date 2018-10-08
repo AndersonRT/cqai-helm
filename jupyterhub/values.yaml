@@ -234,10 +234,11 @@ singleuser:
             ln -sf /srv/cqai/data/* cqai-data;
             ln -sf /srv/cqai/data/mktdb5/* market-data;
             cp /base/custom-env/* custom-env;
-            ln -sf /srv/tutorials/readonly/* tutorials/readonly;
-            ln -sf /srv/tutorials/editable/* tutorials/editable;
-            ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
             ln -sf /srv/shared-scripts/editable/* shared-scripts/editable;
+            ln -sf /srv/tutorials/editable/* tutorials/editable;
+            
+            #ln -sf /srv/tutorials/readonly/* tutorials/readonly;
+            #ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
             # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             # chmod 600 /home/jovyan/.passwd-s3fs;
             # s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=.passwd-s3fs -o umask=000;
