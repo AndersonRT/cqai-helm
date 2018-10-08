@@ -51,6 +51,7 @@ hub:
     #c.Spawner.cmd = ['jupyter-labhub']
 
     import hashauthenticator
+    import pwd
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
       from tornado import gen
       import pwd
@@ -59,6 +60,7 @@ hub:
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
+        import pwd
         # spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
         spawner.uid = int(pwd.getpwnam('randersontest').pw_uid)
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
