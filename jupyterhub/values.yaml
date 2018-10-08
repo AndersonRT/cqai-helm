@@ -44,6 +44,8 @@ hub:
     
     user_uids = os.environ.get("JUPYTER_HUB_UIDS").replace("~_~",",")
     user_uids = json.loads("{"+user_uids[1:-1]+"}")
+    
+    print(user_uids)
 
     #c.Spawner.cmd = ['jupyter-labhub']
 
