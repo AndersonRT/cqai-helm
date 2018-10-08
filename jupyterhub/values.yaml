@@ -197,7 +197,8 @@ singleuser:
   events: true
   extraAnnotations: {}
   extraLabels: {}
-  extraEnv: {}
+  extraEnv: 
+    CHOWN_HOME: 'yes'
   lifecycleHooks:
     postStart:
       exec:
