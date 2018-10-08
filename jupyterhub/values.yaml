@@ -37,6 +37,7 @@ hub:
   
     import os
     import json
+    import subprocess
 
     aws_user_secrets = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
     aws_user_secrets = json.loads("{"+aws_user_secrets[1:-1]+"}")
@@ -72,10 +73,19 @@ hub:
             )
         )
         return pod
-
+    
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     
-    c.KubeSpawner.singleuser_uid = 1000
+    # Define user uid permission
+    try:
+      instance_user = c.Spawner.user.name
+      print(instance_user)
+      instance_uid = int(subprocess.check_output(["id", "-u", instance_user]))
+    except:
+      instance_uid = 1000
+    
+    c.KubeSpawner.singleuser_uid = instance_uid
+    
     #c.Authenticator.admin_users = {'randersontest', 'wchen'}
     #c.JupyterHub.admin_access = True
     
