@@ -82,7 +82,21 @@ hub:
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     
     import logging
-    logging.warning("test")
+    try:
+      logging.warning(c.JupyterHub.spawner.user.name)
+    except:
+      logging.warning("c.JupyterHub.spawner.user.name didnt work")
+    
+    try:
+      logging.warning(c.KubeSpawner.user.name)
+    except:
+      logging.warning("c.KubeSpawner.user.name didnt work")
+      
+    
+    try:
+      logging.warning(c.KubeSpawner.args)
+    except:
+      logging.warning("c.KubeSpawner.args didnt work")
     
     # Define user uid permission
     try:
