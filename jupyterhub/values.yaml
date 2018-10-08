@@ -75,7 +75,7 @@ hub:
 
     c.KubeSpawner.modify_pod_hook = modify_pod_hook
     
-    c.KubeSpawner.singleuser_uid = 1002
+    c.KubeSpawner.singleuser_uid = 1000
     #c.Authenticator.admin_users = {'randersontest', 'wchen'}
     #c.JupyterHub.admin_access = True
     
