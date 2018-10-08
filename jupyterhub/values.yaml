@@ -58,25 +58,12 @@ hub:
 
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
-        spawner.uid = int(1002)
+        spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
         if not auth_state:
           return
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
-        try:
-          logging.warning(spawner.user.name)
-        except:
-          logging.warning("failed 1")
-        try:
-          logging.warning(user)
-        except:
-          logging.warning("failed 2")
-        try:
-          logging.warning(spawner.uid)
-        except:
-          logging.warning("failed 3")
-
 
     c.JupyterHub.authenticator_class = MyAuthenticator #'hashauthenticator.HashAuthenticator'
     c.HashAuthenticator.secret_key = os.environ.get("AUTH_SECRET_KEY")  # Defaults to ''
