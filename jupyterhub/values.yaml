@@ -54,13 +54,9 @@ hub:
     import pwd
     class MyAuthenticator(hashauthenticator.HashAuthenticator):
       from tornado import gen
-      import pwd
-
-
-
+      
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
-        import pwd
         # spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
         try:
           spawner.uid = int(user_uids[str(spawner.user.name)])
@@ -214,8 +210,8 @@ singleuser:
   events: true
   extraAnnotations: {}
   extraLabels: {}
-  extraEnv: 
-    CHOWN_HOME: 'yes'
+  #extraEnv: 
+  #  CHOWN_HOME: 'yes'
   lifecycleHooks:
     postStart:
       exec:
