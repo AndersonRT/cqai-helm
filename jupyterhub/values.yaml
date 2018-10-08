@@ -221,6 +221,8 @@ singleuser:
           - "-c"
           - "-e"
           - >
+            echo jovyan:x:12530:100::/home/jovyan:/bin/bash >> /etc/passwd
+          
             mkdir -p shared-scripts;
             mkdir -p shared-scripts/readonly; 
             mkdir -p shared-scripts/editable;
