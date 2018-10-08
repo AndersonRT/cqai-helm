@@ -62,7 +62,10 @@ hub:
           spawner.uid = int(user_uids[str(spawner.user.name)])
         except:
           spawner.uid = 1000
-          
+        
+        spawner.fsgid = 1000
+        spawner.gid = 1000
+        
         spawner.environment['USER_PERMISSION']=str(spawner.uid)  
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
