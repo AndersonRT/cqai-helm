@@ -277,11 +277,11 @@ singleuser:
         subPath: editable
         readOnly: false
       - name: tutorials-nfs
-        mountPath: /srv/tutorials
+        mountPath: /srv/tutorials/readonly
         subPath: readonly
         readOnly: true
       - name: tutorials-nfs
-        mountPath: /srv/tutorials
+        mountPath: /srv/tutorials/editable
         subPath: editable
         readOnly: false
       - name: cqai-data-nfs
