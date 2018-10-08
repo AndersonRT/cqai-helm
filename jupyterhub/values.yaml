@@ -78,9 +78,7 @@ hub:
     
     # Define user uid permission
     try:
-      instance_user = c.Spawner.user.name
-      print(instance_user)
-      instance_uid = int(subprocess.check_output(["id", "-u", instance_user]))
+      instance_uid = int(subprocess.check_output(["id", "-u", "randersontest"]))
     except:
       instance_uid = 1000
     
