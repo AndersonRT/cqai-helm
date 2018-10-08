@@ -85,7 +85,8 @@ hub:
     try:
       instance_uid = int(user_uids['randersontest'])
     except:
-      instance_uid = 1000
+      user_uids = {'randersontest':1002, 'randerson':1000}
+      instance_uid = int(user_uid['randersontest'])
     
     c.KubeSpawner.singleuser_uid = instance_uid
     
