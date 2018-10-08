@@ -60,6 +60,7 @@ hub:
         # spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
         try:
           spawner.uid = int(user_uids[str(spawner.user.name)])
+          spawner.fs_gid = int(user_uids[str(spawner.user.name)])
         except:
           spawner.uid = 1000
           
@@ -210,8 +211,8 @@ singleuser:
   events: true
   extraAnnotations: {}
   extraLabels: {}
-  #extraEnv: 
-  #  CHOWN_HOME: 'yes'
+  extraEnv: 
+    CHOWN_HOME: 'yes'
   lifecycleHooks:
     postStart:
       exec:
