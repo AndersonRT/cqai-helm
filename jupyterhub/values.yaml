@@ -265,7 +265,7 @@ singleuser:
         readOnly: true
     static:
       pvcName: cqai-userdata-pvc
-      subPath: '{username}'
+      subPath: '/{username}'
     capacity: 20Gi
     homeMountPath: /home/jovyan
     #dynamic:
