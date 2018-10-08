@@ -237,7 +237,7 @@ singleuser:
             ln -sf /srv/shared-scripts/editable/* shared-scripts/editable;
             ln -sf /srv/tutorials/editable/* tutorials/editable;
             
-            #ln -sf /srv/tutorials/readonly/* tutorials/readonly;
+            ln -sf /srv/tutorials/readonly tutorials/readonly;
             #ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
             # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             # chmod 600 /home/jovyan/.passwd-s3fs;
