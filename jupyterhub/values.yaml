@@ -63,6 +63,7 @@ hub:
         except:
           spawner.uid = 1000
           
+        spawner.environment['USER_PERMISSION'] = spawner.uid  
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
         if not auth_state:
@@ -220,7 +221,7 @@ singleuser:
           - "-c"
           - "-e"
           - >
-            echo jovyan:x:12530:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            echo jovyan:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
           
             mkdir -p shared-scripts;
@@ -252,6 +253,9 @@ singleuser:
   storage:
     type: static
     extraVolumes:
+      - name: shared-scripts-nfs
+        persistentVolumeClaim:
+          claimName: cqai-shared-scripts-pvc
       - name: tutorials-nfs
         persistentVolumeClaim:
           claimName: cqai-tutorials-pvc
@@ -259,6 +263,14 @@ singleuser:
         persistentVolumeClaim:
           claimName: cqai-data-pvc
     extraVolumeMounts:
+      - name: shared-scripts-nfs
+        mountPath: /srv/shared-scripts/readonly
+        subPath: readonly
+        readOnly: true
+      - name: shared-scripts-nfs
+        mountPath: /srv/shared-scripts/editable
+        subPath: editable
+        readOnly: false
       - name: tutorials-nfs
         mountPath: /srv/tutorials
         readOnly: false
