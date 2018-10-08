@@ -41,6 +41,9 @@ hub:
 
     aws_user_secrets = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
     aws_user_secrets = json.loads("{"+aws_user_secrets[1:-1]+"}")
+    
+    user_uids = os.environ.get("JUPYTER_HUB_UIDS").replace("~_~",",")
+    user_uids = json.loads("{"+user_uids[1:-1]+"}")
 
     #c.Spawner.cmd = ['jupyter-labhub']
 
@@ -78,7 +81,7 @@ hub:
     
     # Define user uid permission
     try:
-      instance_uid = int(subprocess.check_output(["id", "-u", "randersontest"]))
+      instance_uid = int(user_uids['randersontest'])
     except:
       instance_uid = 1000
     
