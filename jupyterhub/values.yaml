@@ -227,7 +227,7 @@ singleuser:
             mkdir -p shared-scripts;
             mkdir -p market-data;
             mkdir -p tutorials;
-            mkdir -p tutorials/readonly;
+            
             mkdir -p tutorials/editable;
             mkdir -p cqai-data;
             mkdir -p custom-env/envs custom-env/pkgs;
@@ -237,8 +237,8 @@ singleuser:
             ln -sf /srv/shared-scripts/editable/* shared-scripts/editable;
             ln -sf /srv/tutorials/editable/* tutorials/editable;
             
-            ln -sf /srv/tutorials/readonly tutorials/readonly;
-            #ln -sf /srv/shared-scripts/readonly/* shared-scripts/readonly;
+            ln -sf /srv/tutorials/readonly tutorials;
+            ln -sf /srv/shared-scripts/readonly shared-scripts;
             # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             # chmod 600 /home/jovyan/.passwd-s3fs;
             # s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=.passwd-s3fs -o umask=000;
