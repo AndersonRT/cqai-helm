@@ -222,7 +222,7 @@ singleuser:
           - "-e"
           - >
             echo ${USER_PERMISSION};
-            echo jovyan:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/${JUPYTERHUB_USER}:/bin/bash >> /etc/passwd;
             
             mkdir -p shared-scripts;
             mkdir -p market-data;
@@ -286,7 +286,7 @@ singleuser:
       pvcName: cqai-userdata-pvc
       subPath: 'home/{username}'
     capacity: 20Gi
-    homeMountPath: /home/jovyan
+    homeMountPath: /home/{username}
     #dynamic:
       #storageClass: longhorn2
       #pvcNameTemplate: claim-{username}{servername}
