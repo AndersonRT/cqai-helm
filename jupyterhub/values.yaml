@@ -224,20 +224,23 @@ singleuser:
             echo ${USER_PERMISSION};
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/${JUPYTERHUB_USER}:/bin/bash >> /etc/passwd;
             
-            mkdir -p shared-scripts;
-            mkdir -p market-data;
-            mkdir -p tutorials;
+            mkdir -p cqai;
+            mkdir -p cqai/shared-scripts;
+            mkdir -p cqai/market-data;
+            mkdir -p cqai/tutorials;
             
-            mkdir -p cqai-data;
+            mkdir -p cqai/data;
             mkdir -p custom-env/envs custom-env/pkgs;
-            ln -sf /srv/cqai/data/* cqai-data;
-            ln -sf /srv/cqai/data/mktdb5/* market-data;
+            ln -sf /srv/cqai/data/* cqai/data;
+            ln -sf /srv/cqai/data/mktdb5/* cqai/market-data;
             cp /base/custom-env/* custom-env;
             
-            ln -sf /srv/shared-scripts/readonly shared-scripts;
-            ln -sf /srv/shared-scripts/editable shared-scripts;
-            ln -sf /srv/tutorials/editable tutorials;
-            ln -sf /srv/tutorials/readonly tutorials;
+            ln -sf /srv/shared-scripts/readonly cqai/shared-scripts;
+            ln -sf /srv/shared-scripts/editable cqai/shared-scripts;
+            ln -sf /srv/tutorials/editable cqai/tutorials;
+            ln -sf /srv/tutorials/readonly cqai/tutorials;
+            
+            chmod -R 777 /srv/tutorials/editable;
 
             # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             # chmod 600 /home/jovyan/.passwd-s3fs;
