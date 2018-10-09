@@ -286,7 +286,7 @@ singleuser:
       pvcName: cqai-userdata-pvc
       subPath: 'home/{username}'
     capacity: 20Gi
-    homeMountPath: /home/{username}
+    homeMountPath: '/home/{username}'
     #dynamic:
       #storageClass: longhorn2
       #pvcNameTemplate: claim-{username}{servername}
