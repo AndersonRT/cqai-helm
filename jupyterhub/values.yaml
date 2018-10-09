@@ -63,6 +63,7 @@ hub:
         except:
           spawner.uid = 1000
         
+        spawner.environment['HOME']='/home/'+str(spawner.uid)
         spawner.environment['USER_PERMISSION']=str(spawner.uid)  
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
@@ -213,7 +214,6 @@ singleuser:
   extraLabels: {}
   extraEnv: 
     CHOWN_HOME: 'yes'
-    HOME: '/home/{username}'
   lifecycleHooks:
     postStart:
       exec:
@@ -225,6 +225,7 @@ singleuser:
             
             echo ${USER_PERMISSION};
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            
             
             mkdir -p cqai;
             mkdir -p cqai/shared-scripts;
