@@ -222,7 +222,7 @@ singleuser:
           - "-c"
           - "-e"
           - >
-            export HOME=/home/${JUPYTERHUB_USER}
+            export HOME=/home/${JUPYTERHUB_USER};
             echo ${USER_PERMISSION};
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/${JUPYTERHUB_USER}:/bin/bash >> /etc/passwd;
             
