@@ -222,7 +222,7 @@ singleuser:
           - "-e"
           - >
             echo ${USER_PERMISSION};
-            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/${JUPYTERHUB_USER}:/bin/bash >> /etc/passwd;
+            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
             mkdir -p cqai;
             mkdir -p cqai/shared-scripts;
