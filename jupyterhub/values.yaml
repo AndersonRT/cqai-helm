@@ -213,6 +213,7 @@ singleuser:
   extraLabels: {}
   extraEnv: 
     CHOWN_HOME: 'yes'
+    HOME: '/home/{username}'
   lifecycleHooks:
     postStart:
       exec:
@@ -221,6 +222,7 @@ singleuser:
           - "-c"
           - "-e"
           - >
+            
             echo ${USER_PERMISSION};
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
@@ -289,7 +291,7 @@ singleuser:
       pvcName: cqai-userdata-pvc
       subPath: 'home/{username}'
     capacity: 20Gi
-    homeMountPath: '/home/{username}'
+    homeMountPath: /home/{username}
     #dynamic:
       #storageClass: longhorn2
       #pvcNameTemplate: claim-{username}{servername}
