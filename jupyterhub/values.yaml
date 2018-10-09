@@ -240,7 +240,7 @@ singleuser:
             ln -sf /srv/tutorials/editable cqai/tutorials;
             ln -sf /srv/tutorials/readonly cqai/tutorials;
             
-            chmod -R 777 /srv/tutorials/editable;
+            
 
             # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             # chmod 600 /home/jovyan/.passwd-s3fs;
