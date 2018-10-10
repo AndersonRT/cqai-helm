@@ -58,6 +58,7 @@ hub:
       @gen.coroutine
       def pre_spawn_start(self,user,spawner):
         # spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
+        spawner.set_user_setuid(str(spawner.user.name), chdir=True)
         try:
           spawner.uid = int(user_uids[str(spawner.user.name)])
         except:
@@ -221,9 +222,8 @@ singleuser:
           - "-c"
           - "-e"
           - >
-            export HOME=/home/${JUPYTERHUB_USER};
-            echo ${USER_PERMISSION};
-            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/${JUPYTERHUB_USER}:/bin/bash >> /etc/passwd;
+          
+            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
             
             mkdir -p cqai;
