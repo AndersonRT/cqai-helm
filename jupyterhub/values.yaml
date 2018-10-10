@@ -64,7 +64,8 @@ hub:
         except:
           spawner.uid = 1000
         
-        spawner.gid = 100
+        spawner.gid = 1000
+        spawner.fs_gid = 1000
         spawner.environment['NB_USER']=str(spawner.user.name)
         spawner.environment['NB_UID']=str(spawner.uid)
         
@@ -227,7 +228,7 @@ singleuser:
           - "-e"
           - >
           
-            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:1000::/home/jovyan:/bin/bash >> /etc/passwd;
             
             
             mkdir -p cqai;
