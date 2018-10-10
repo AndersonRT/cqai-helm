@@ -222,14 +222,9 @@ singleuser:
           - "-c"
           - "-e"
           - >
-          
-            
-            
-            
+            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             mkdir -p cqai;
-            mkdir -p cqai/shared-scripts;
             mkdir -p cqai/market-data;
-            mkdir -p cqai/tutorials;            
             
             mkdir -p cqai/data;
             mkdir -p custom-env/envs custom-env/pkgs;
@@ -237,20 +232,9 @@ singleuser:
             ln -sf /srv/cqai/data/mktdb5/* cqai/market-data;
             cp /base/custom-env/* custom-env;
             
-            ln -sf /srv/shared-scripts/readonly cqai/shared-scripts;
-            ln -sf /srv/shared-scripts/editable cqai/shared-scripts;
-            ln -sf /srv/tutorials/editable cqai/tutorials;
-            ln -sf /srv/tutorials/readonly cqai/tutorials;
+            ln -sf /srv/shared-scripts cqai;
+            ln -sf /srv/tutorials cqai;
             
-            #chown -h ${JUPYTERHUB_USER}:users cqai/tutorials/editable;
-            #chown -h ${JUPYTERHUB_USER}:users cqai/tutorials/readonly;
-            
-            
-            # echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
-            # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
-            # chmod 600 /home/jovyan/.passwd-s3fs;
-            # s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=.passwd-s3fs -o umask=000;
-
 
   initContainers:
   nodeSelector: {}
@@ -272,21 +256,13 @@ singleuser:
           claimName: cqai-data-pvc
     extraVolumeMounts:
       - name: shared-scripts-nfs
-        mountPath: /srv/shared-scripts/readonly
-        subPath: readonly
-        readOnly: true
-      - name: shared-scripts-nfs
-        mountPath: /srv/shared-scripts/editable
-        subPath: editable
-        readOnly: false
-      - name: tutorials-nfs
-        mountPath: /srv/tutorials/readonly
+        mountPath: /srv/shared-scripts
         subPath: readonly
         readOnly: true
       - name: tutorials-nfs
-        mountPath: /srv/tutorials/editable
-        subPath: editable
-        readOnly: false
+        mountPath: /srv/tutorials
+        subPath: readonly
+        readOnly: true
       - name: cqai-data-nfs
         mountPath: /srv/cqai/data
         readOnly: true
