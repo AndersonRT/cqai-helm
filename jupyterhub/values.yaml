@@ -64,8 +64,10 @@ hub:
         except:
           spawner.uid = 1000
         
+        spawner.gid = 100
         spawner.environment['NB_USER']=str(spawner.user.name)
         spawner.environment['NB_UID']=str(spawner.uid)
+        spawner.environment['HOME']='/home/' + str(spawner.user.name)
         
         spawner.environment['USER_PERMISSION']=str(spawner.uid)  
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
@@ -226,7 +228,7 @@ singleuser:
           - "-e"
           - >
           
-            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/${JUPYTERHUB_USER}:/bin/bash >> /etc/passwd;
             
             
             mkdir -p cqai;
@@ -294,7 +296,7 @@ singleuser:
       pvcName: cqai-userdata-pvc
       subPath: 'home/{username}'
     capacity: 20Gi
-    homeMountPath: /home/jovyan
+    homeMountPath: /home/{username}
     #dynamic:
       #storageClass: longhorn2
       #pvcNameTemplate: claim-{username}{servername}
