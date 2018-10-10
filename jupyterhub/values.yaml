@@ -64,11 +64,6 @@ hub:
         except:
           spawner.uid = 1000
         
-        spawner.gid = 100
-        spawner.fs_gid = 100
-        spawner.environment['NB_USER']=str(spawner.user.name)
-        spawner.environment['NB_UID']=str(spawner.uid)
-        
         spawner.environment['USER_PERMISSION']=str(spawner.uid)  
         spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
         auth_state = yield user.get_auth_state()
@@ -228,6 +223,7 @@ singleuser:
           - "-e"
           - >
           
+            echo users:x:100:${JUPYTERHUB_USER} >> /etc/passwd;
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
             
