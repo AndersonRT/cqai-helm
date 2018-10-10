@@ -223,7 +223,7 @@ singleuser:
           - "-e"
           - >
           
-            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            
             
             
             mkdir -p cqai;
@@ -242,13 +242,11 @@ singleuser:
             ln -sf /srv/tutorials/editable cqai/tutorials;
             ln -sf /srv/tutorials/readonly cqai/tutorials;
             
-            chown -h ${JUPYTERHUB_USER}:users cqai/tutorials/editable;
-            chown -h ${JUPYTERHUB_USER}:users cqai/tutorials/readonly;
+            #chown -h ${JUPYTERHUB_USER}:users cqai/tutorials/editable;
+            #chown -h ${JUPYTERHUB_USER}:users cqai/tutorials/readonly;
             
             
-            
-            
-
+            # echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             # echo $AWS_USER_SECRET > /home/jovyan/.passwd-s3fs;
             # chmod 600 /home/jovyan/.passwd-s3fs;
             # s3fs cqai-user-data:/home/${JUPYTERHUB_USER} user-data -o allow_other -o passwd_file=.passwd-s3fs -o umask=000;
