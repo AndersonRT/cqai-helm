@@ -230,6 +230,9 @@ singleuser:
             mkdir -p cqai/shared-scripts;
             mkdir -p cqai/market-data;
             mkdir -p cqai/tutorials;
+            mkdir -p cqai/tutorials/editable;
+            mkdir -p cqai/tutorials/readonly;
+            
             
             mkdir -p cqai/data;
             mkdir -p custom-env/envs custom-env/pkgs;
@@ -239,8 +242,10 @@ singleuser:
             
             ln -sf /srv/shared-scripts/readonly cqai/shared-scripts;
             ln -sf /srv/shared-scripts/editable cqai/shared-scripts;
-            ln -sf /srv/tutorials/editable cqai/tutorials;
-            ln -sf /srv/tutorials/readonly cqai/tutorials;
+            ln -sf /srv/tutorials/editable/* cqai/tutorials/editable;
+            ln -sf /srv/tutorials/readonly/* cqai/tutorials/readonly;
+            
+            
             
             
 
