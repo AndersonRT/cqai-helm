@@ -223,7 +223,6 @@ singleuser:
           - "-e"
           - >
           
-            echo users:x:100:${JUPYTERHUB_USER} >> /etc/group;
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             
             
