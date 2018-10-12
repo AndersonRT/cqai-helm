@@ -225,12 +225,8 @@ singleuser:
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
             mkdir -p cqai;
             mkdir -p cqai/market-data;
-            
             mkdir -p cqai/data;
-            mkdir -p cqai/tutorials;
-            mkdir -p cqai/shared-scripts;
-            
-            
+                        
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/cqai/data/* cqai/data;
             ln -sf /srv/cqai/data/mktdb5/* cqai/market-data;
