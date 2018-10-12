@@ -227,6 +227,10 @@ singleuser:
             mkdir -p cqai/market-data;
             
             mkdir -p cqai/data;
+            mkdir -p cqai/tutorials;
+            mkdir -p cqai/shared-scripts;
+            
+            
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/cqai/data/* cqai/data;
             ln -sf /srv/cqai/data/mktdb5/* cqai/market-data;
@@ -257,11 +261,9 @@ singleuser:
     extraVolumeMounts:
       - name: shared-scripts-nfs
         mountPath: /srv/shared-scripts
-        subPath: readonly
         readOnly: true
       - name: tutorials-nfs
         mountPath: /srv/tutorials
-        subPath: readonly
         readOnly: true
       - name: cqai-data-nfs
         mountPath: /srv/cqai/data
