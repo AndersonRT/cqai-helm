@@ -324,10 +324,10 @@ ingress:
 
 cull:
   enabled: true
-  # users: false
+  users: false
   timeout: 86400
   every: 3600
-  # concurrency: 10
+  concurrency: 10
   maxAge: 0
   podCuller:
     image:
