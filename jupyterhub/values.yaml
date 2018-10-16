@@ -323,12 +323,12 @@ ingress:
 
 
 cull:
-  enabled: false
-  users: false
-  timeout: 360
-  every: 600
-  concurrency: 10
-  maxAge: 0
+  enabled: true
+  # users: false
+  timeout: 86400
+  every: 3600
+  # concurrency: 10
+  #maxAge: 0
   podCuller:
     image:
       name: jupyterhub/k8s-pod-culler
