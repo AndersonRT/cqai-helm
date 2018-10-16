@@ -328,7 +328,7 @@ cull:
   timeout: 86400
   every: 3600
   # concurrency: 10
-  #maxAge: 0
+  maxAge: 0
   podCuller:
     image:
       name: jupyterhub/k8s-pod-culler
