@@ -286,7 +286,7 @@ singleuser:
     password: 
   startTimeout: 180
   cpu:
-    limit: 16.0
+    limit: 32.0
     guarantee: 1.0
   memory:
     limit: 32G
