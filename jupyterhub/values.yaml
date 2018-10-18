@@ -243,8 +243,8 @@ singleuser:
           claimName: cqai-data-pvc
     extraVolumeMounts:
       - name: cqai-data-nfs
-        mountPath: /srv/cq-data
-        mountPath: 'data'
+        mountPath: /srv/cqai/data
+        subPath: 'data'
         readOnly: true
       - name: cqai-data-nfs
         mountPath: /srv/shared-scripts
