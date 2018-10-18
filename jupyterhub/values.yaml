@@ -258,7 +258,7 @@ singleuser:
         subPath: 'tutorials'
         readOnly: true
       - name: cqai-data-nfs
-        mountPath: /srv/cqai
+        mountPath: /srv/cqai/data
         mountPath: 'data'
         readOnly: true
     static:
