@@ -254,10 +254,6 @@ singleuser:
         mountPath: /srv/data
         mountPath: 'data'
         readOnly: true
-      - name: cqai-data-nfs
-        mountPath: /srv/market-data
-        mountPath: 'data/mktdb5'
-        readOnly: true
     static:
       pvcName: cqai-userdata-pvc
       subPath: 'home/{username}'
