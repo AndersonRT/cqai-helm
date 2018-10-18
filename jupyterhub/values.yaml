@@ -229,7 +229,7 @@ singleuser:
             cp /base/custom-env/* custom-env;
             
             ln -sf /srv/data cqai;
-            ls -sf /srv/data/mktdb5 cqai;
+            ls -sf /srv/market-data cqai;
             ln -sf /srv/shared-scripts cqai;
             ln -sf /srv/tutorials cqai;
             
@@ -258,6 +258,10 @@ singleuser:
       - name: cqai-data-nfs
         mountPath: /srv/data
         mountPath: 'data'
+        readOnly: true
+      - name: cqai-data-nfs
+        mountPath: /srv/market-data
+        mountPath: 'data/mktdb5'
         readOnly: true
     static:
       pvcName: cqai-userdata-pvc
