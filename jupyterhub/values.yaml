@@ -228,11 +228,6 @@ singleuser:
             mkdir -p custom-env/envs custom-env/pkgs;
             cp /base/custom-env/* custom-env;
             
-            ln -sf /srv/data cqai;
-            ls -sf /srv/market-data cqai;
-            ln -sf /srv/shared-scripts cqai;
-            ln -sf /srv/tutorials cqai;
-            
 
   initContainers:
   nodeSelector: {}
