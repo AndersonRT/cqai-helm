@@ -228,8 +228,8 @@ singleuser:
             mkdir -p cqai/data;
                         
             mkdir -p custom-env/envs custom-env/pkgs;
-            ln -sf /srv/cqai/data/* cqai/data;
-            ln -sf /srv/cqai/data/mktdb5/* cqai/market-data;
+            ln -sf /srv/data/* cqai/data;
+            ln -sf /srv/data/mktdb5/* cqai/market-data;
             cp /base/custom-env/* custom-env;
             
             ln -sf /srv/shared-scripts cqai;
@@ -258,7 +258,7 @@ singleuser:
         subPath: 'tutorials'
         readOnly: true
       - name: cqai-data-nfs
-        mountPath: /srv/cqai/data
+        mountPath: /srv/data
         mountPath: 'data'
         readOnly: true
     static:
