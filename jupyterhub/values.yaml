@@ -257,9 +257,6 @@ singleuser:
         mountPath: /srv/tutorials
         subPath: 'tutorials'
         readOnly: true
-      - name: tutorials-nfs
-        mountPath: /srv/tutorials
-        readOnly: true
       - name: cqai-data-nfs
         mountPath: /srv/cqai/data
         mountPath: 'data'
