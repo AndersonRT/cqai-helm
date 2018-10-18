@@ -223,15 +223,15 @@ singleuser:
           - "-e"
           - >
             echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
-            mkdir -p cqai;
-            mkdir -p cqai/market-data;
-            mkdir -p cqai/data;
+            mkdir -p cqai;         
                         
             mkdir -p custom-env/envs custom-env/pkgs;
             ln -sf /srv/data/* cqai/data;
             ln -sf /srv/data/mktdb5/* cqai/market-data;
             cp /base/custom-env/* custom-env;
             
+            ln -sf /srv/data cqai;
+            ls -sf /srv/data/mktdb5 cqai;
             ln -sf /srv/shared-scripts cqai;
             ln -sf /srv/tutorials cqai;
             
