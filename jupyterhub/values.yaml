@@ -18,31 +18,88 @@ hub:
     # This is required for upgrading to work
     rollingUpdate:
   db:
-    type: sqlite-memory
+    type: postgres
     upgrade:
     pvc:
       annotations: {}
       selector: {}
       accessModes:
-        - ReadWriteOnce
-      storage: 1Gi
+        - ReadWriteMany
+      storage: 10Gi
       subPath:
       storageClassName:
-    url:
+    url: 
   labels: {}
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path: /hub/metrics
   extraConfig: |
-    c.JupyterHub.authenticator_class = 'ldapauthenticator.LDAPAuthenticator'
+  
+    import os
+    import json
+    import subprocess
+    import logging
+
+    aws_user_secrets = os.environ.get("JUPYTER_HUB_USERS").replace("~_~",",")
+    aws_user_secrets = json.loads("{"+aws_user_secrets[1:-1]+"}")
+    
+    user_uids = os.environ.get("JUPYTER_HUB_UIDS").replace("~_~",",")
+    user_uids = json.loads("{"+user_uids[1:-1]+"}")
+    
+    #print(user_uids)
+
+    #c.Spawner.cmd = ['jupyter-labhub']
+
+    import hashauthenticator
+    import pwd
+    class MyAuthenticator(hashauthenticator.HashAuthenticator):
+      from tornado import gen
+      
+      @gen.coroutine
+      def pre_spawn_start(self,user,spawner):
+        # spawner.uid = int(subprocess.check_output(["id", "-u", str(spawner.user.name)]))
+        
+        try:
+          spawner.uid = int(user_uids[str(spawner.user.name)])
+        except:
+          spawner.uid = 1000
+        
+        spawner.environment['USER_PERMISSION']=str(spawner.uid)  
+        spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
+        auth_state = yield user.get_auth_state()
+        if not auth_state:
+          return
+        spawner.environment['AWS_USER_SECRET']=aws_user_secrets[spawner.user.name]
+
+    c.JupyterHub.authenticator_class = MyAuthenticator #'hashauthenticator.HashAuthenticator'
+    c.HashAuthenticator.secret_key = os.environ.get("AUTH_SECRET_KEY")  # Defaults to ''
+    c.HashAuthenticator.password_length = 6          # Defaults to 6
+    c.HashAuthenticator.show_logins = True            # Optional, defaults to False
+    
+    from kubernetes import client
+    def modify_pod_hook(spawner, pod):
+        pod.spec.containers[0].security_context = client.V1SecurityContext(
+            privileged=True,
+            capabilities=client.V1Capabilities(
+                add=['SYS_ADMIN']
+            )
+        )
+        return pod
+    
+    c.KubeSpawner.modify_pod_hook = modify_pod_hook
+    
+    
+    #c.Authenticator.admin_users = {'randersontest', 'wchen'}
+    #c.JupyterHub.admin_access = True
+    
   extraConfigMap: {}
   extraEnv: {}
   extraContainers: []
   extraVolumes: []
   extraVolumeMounts: []
   image:
-    name: jupyterhub/k8s-hub
-    tag: 'a70c431'
+    name: rtanderson/cqai-jupyterhub
+    tag: v0.1
   resources:
     requests:
       cpu: 200m
@@ -120,22 +177,20 @@ proxy:
           - ipBlock:
               cidr: 0.0.0.0/0
 
+
 auth:
   type: custom
-  custom:
-    className: "ldapauthenticator.LDAPAuthenticator"
-    config:
-      bind_dn_template: "cn={username},ou=Everyone,dc=zonetrading,dc=com"
-      server_address: zonedc01.zonetrading.com
-      use_ssl: false
   whitelist:
     users:
   admin:
     access: true
     users:
+    - admin
+  custom:
+    className: MyAuthenticator #'hashauthenticator.HashAuthenticator'
   state:
-    enabled: true
-    cryptoKey: 79c67bc7e5b2da5b3c55c162e5067a795aef4d98540950c9dbb15d7cfc2501f2
+    enabled: false
+    cryptoKey:
 
 singleuser:
   networkTools:
@@ -157,8 +212,30 @@ singleuser:
   events: true
   extraAnnotations: {}
   extraLabels: {}
-  extraEnv: {}
+  extraEnv: 
+    CHOWN_HOME: 'yes'
   lifecycleHooks:
+    postStart:
+      exec:
+        command: 
+          - "sh"
+          - "-c"
+          - "-e"
+          - >
+            echo ${JUPYTERHUB_USER}:x:${USER_PERMISSION}:100::/home/jovyan:/bin/bash >> /etc/passwd;
+            mkdir -p cqai;
+            mkdir -p cqai/market-data;
+            mkdir -p cqai/data;
+                        
+            mkdir -p custom-env/envs custom-env/pkgs;
+            ln -sf /srv/cqai/data/* cqai/data;
+            ln -sf /srv/cqai/data/mktdb5/* cqai/market-data;
+            cp /base/custom-env/* custom-env;
+            
+            ln -sf /srv/shared-scripts cqai;
+            ln -sf /srv/tutorials cqai;
+            
+
   initContainers:
   nodeSelector: {}
   uid: 1000
@@ -166,36 +243,51 @@ singleuser:
   serviceAccountName:
   schedulerStrategy:
   storage:
-    type: none
-    extraVolumes: []
-    extraVolumeMounts: []
+    type: static
+    extraVolumes:
+      - name: cqai-data-nfs
+        persistentVolumeClaim:
+          claimName: cqai-data-pvc
+    extraVolumeMounts:
+      - name: cqai-data-nfs
+        mountPath: /srv/cqai/data
+        subPath: 'data'
+        readOnly: true
+      - name: cqai-data-nfs
+        mountPath: /srv/shared-scripts
+        subPath: 'shared-scripts'
+        readOnly: true
+      - name: cqai-data-nfs
+        mountPath: /srv/tutorials
+        subPath: 'tutorials'
+        readOnly: true
     static:
-      pvcName:
-      subPath: '{username}'
-    capacity: 10Gi
+      pvcName: cqai-userdata-pvc
+      subPath: 'home/{username}'
+    capacity: 20Gi
     homeMountPath: /home/jovyan
-    dynamic:
-      storageClass:
-      pvcNameTemplate: claim-{username}{servername}
-      volumeNameTemplate: volume-{username}{servername}
-      storageAccessModes: [ReadWriteOnce]
+    #dynamic:
+      #storageClass: longhorn2
+      #pvcNameTemplate: claim-{username}{servername}
+      #volumeNameTemplate: volume-{username}{servername}
+      #storageAccessModes: [ReadWriteOnce]
   image:
-    name: rtanderson/cqai-basic
-    tag: latest
+    name: cqai/cqai-notebook-experimental
+    tag: v0.1
     pullPolicy: IfNotPresent
   imagePullSecret:
-    enabled: false
-    registry: 
-    username: 
-    email:
-    password:
-  startTimeout: 300
+    enabled: true
+    registry: https://index.docker.io/v1/
+    username: cqai
+    email: 
+    password: 
+  startTimeout: 180
   cpu:
-    limit:
-    guarantee:
+    limit: 32.0
+    guarantee: 1.0
   memory:
-    limit:
-    guarantee: 1G
+    limit: 32G
+    guarantee: 4G
   extraResource:
     limits: {}
     guarantees: {}
@@ -220,17 +312,18 @@ prePuller:
 
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
-  hosts: []
+  hosts: 
+    - start.cqai.ktginnovation.com
   tls:
 
 
 cull:
   enabled: true
   users: false
-  timeout: 3600
-  every: 600
+  timeout: 86400
+  every: 3600
   concurrency: 10
   maxAge: 0
   podCuller:
