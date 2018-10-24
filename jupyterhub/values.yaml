@@ -73,7 +73,7 @@ hub:
 
     c.JupyterHub.authenticator_class = MyAuthenticator #'hashauthenticator.HashAuthenticator'
     c.HashAuthenticator.secret_key = os.environ.get("AUTH_SECRET_KEY")  # Defaults to ''
-    c.HashAuthenticator.password_length = 6          # Defaults to 6
+    c.HashAuthenticator.password_length = 12          # Defaults to 6
     c.HashAuthenticator.show_logins = True            # Optional, defaults to False
     
     from kubernetes import client
