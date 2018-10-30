@@ -286,7 +286,7 @@ singleuser:
     limit: 32.0
     guarantee: 1.0
   memory:
-    limit: 32G
+    limit: 4G
     guarantee: 4G
   extraResource:
     limits: {}
