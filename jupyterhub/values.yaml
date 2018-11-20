@@ -264,7 +264,7 @@ singleuser:
     static:
       pvcName: cqai-userdata-pvc
       subPath: 'home/{username}'
-    capacity: 20Gi
+    capacity: 100Gi
     homeMountPath: /home/jovyan
     #dynamic:
       #storageClass: longhorn2
